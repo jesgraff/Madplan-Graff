@@ -841,11 +841,8 @@ function startListener(monday) {
 // ══════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════
-document.getElementById('setupBanner').style.display = 'none';
-
-await loadFromFirebase(currentMonday);
-startListener(currentMonday);
 render();
+initFirebase();
 </script>
 </body>
 </html>
