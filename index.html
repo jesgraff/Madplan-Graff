@@ -740,7 +740,7 @@ function attachEvents() {
 }
 
 // ── image upload handler ──
-function handleImageUpload(e, idx) {
+async function handleImageUpload(e, idx) {
   const file = e.target.files[0];
   if (!file) return;
 
