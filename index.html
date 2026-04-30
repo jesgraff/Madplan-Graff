@@ -750,16 +750,30 @@ function handleImageUpload(e, idx) {
   spinner.className = 'spinner';
   wrap.appendChild(spinner);
 
-  const reader = new FileReader();
-  reader.onload = ev => {
-    weekData[idx].image = ev.target.result; // base64 → stored locally
-    saveWeekData(currentMonday, weekData);
+  const formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', 'madplan_unsigned');
+
+  try {
+    const res = await fetch('https://api.cloudinary.com/v1_1/di5x780hh/image/upload', {
+      method: 'POST',
+      body: formData
+    });
+    const data = await res.json();
+    if (data.secure_url) {
+      weekData[idx].image = data.secure_url;
+      saveWeekData(currentMonday, weekData);
+      spinner.remove();
+      renderGrid();
+      toast('Billede gemt ✓');
+    } else {
+      spinner.remove();
+      toast('Fejl ved upload – prøv igen');
+    }
+  } catch(e) {
     spinner.remove();
-    renderGrid();
-    toast('Billede gemt ✓');
-    if (FIREBASE_READY) uploadImageToFirebase(idx, file);
-  };
-  reader.readAsDataURL(file);
+    toast('Fejl ved upload – prøv igen');
+  }
 }
 
 // ══════════════════════════════════════════════════
