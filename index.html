@@ -719,71 +719,142 @@ function render() {
 }
 
 // ══════════════════════════════════════════════════
-//  DRAG & DROP
-//  Only the .drag-handle element is draggable.
-//  Drop targets are the .day-card elements.
+//  DRAG & DROP  (mouse + touch / iPad)
 // ══════════════════════════════════════════════════
 let dragSrcIdx = null;
 
+// ── Shared swap logic ──
+function doSwap(targetIdx) {
+  if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
+  const srcName = weekData[dragSrcIdx].name;
+  const tgtName = weekData[targetIdx].name;
+  [weekData[dragSrcIdx], weekData[targetIdx]] = [weekData[targetIdx], weekData[dragSrcIdx]];
+  saveWeekData(currentMonday, weekData);
+  if (FIREBASE_READY) syncToFirebase();
+  toast(`${srcName} og ${tgtName} byttet ✓`);
+  dragSrcIdx = null;
+  renderGrid();
+}
+
+// ── Touch drag state ──
+let touchClone   = null;   // floating ghost element
+let touchOffsetX = 0;
+let touchOffsetY = 0;
+let lastTouchTarget = null;
+
+function createGhost(card) {
+  const rect = card.getBoundingClientRect();
+  const clone = card.cloneNode(true);
+  clone.style.cssText = `
+    position: fixed;
+    top: ${rect.top}px;
+    left: ${rect.left}px;
+    width: ${rect.width}px;
+    height: ${rect.height}px;
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 9998;
+    transform: rotate(2deg) scale(1.03);
+    box-shadow: 0 16px 48px rgba(15,36,25,0.28);
+    border-radius: 16px;
+    transition: none;
+  `;
+  document.body.appendChild(clone);
+  return clone;
+}
+
+function cardAtPoint(x, y) {
+  // Temporarily hide ghost so elementFromPoint works
+  if (touchClone) touchClone.style.display = 'none';
+  const el = document.elementFromPoint(x, y);
+  if (touchClone) touchClone.style.display = '';
+  return el ? el.closest('.day-card') : null;
+}
+
 function attachEvents() {
 
-  // ── Drag handles (source) ──
+  // ── Mouse drag handles (desktop) ──
   document.querySelectorAll('.drag-handle').forEach(handle => {
     handle.addEventListener('dragstart', e => {
       dragSrcIdx = +handle.dataset.idx;
-      // Style the parent card
       const card = handle.closest('.day-card');
-      card.classList.add('dragging');
       e.dataTransfer.effectAllowed = 'move';
       e.dataTransfer.setData('text/plain', String(dragSrcIdx));
-      // Small delay so the ghost image renders before opacity drop
       requestAnimationFrame(() => card.classList.add('dragging'));
     });
 
     handle.addEventListener('dragend', () => {
-      document.querySelectorAll('.day-card').forEach(c => {
-        c.classList.remove('dragging', 'drag-over');
-      });
+      document.querySelectorAll('.day-card').forEach(c => c.classList.remove('dragging', 'drag-over'));
       dragSrcIdx = null;
+    });
+
+    // ── Touch events on handle (iPad / iPhone) ──
+    handle.addEventListener('touchstart', e => {
+      e.stopPropagation();
+      // Don't prevent default here — let scroll still work on the page
+      const touch = e.touches[0];
+      dragSrcIdx = +handle.dataset.idx;
+      const card  = handle.closest('.day-card');
+      const rect  = card.getBoundingClientRect();
+      touchOffsetX = touch.clientX - rect.left;
+      touchOffsetY = touch.clientY - rect.top;
+      card.classList.add('dragging');
+      touchClone = createGhost(card);
+    }, { passive: true });
+
+    handle.addEventListener('touchmove', e => {
+      if (dragSrcIdx === null) return;
+      e.preventDefault(); // prevent page scroll while dragging
+      const touch = e.touches[0];
+      const x = touch.clientX - touchOffsetX;
+      const y = touch.clientY - touchOffsetY;
+      touchClone.style.top  = `${y}px`;
+      touchClone.style.left = `${x}px`;
+
+      // Highlight card under finger
+      const over = cardAtPoint(touch.clientX, touch.clientY);
+      document.querySelectorAll('.day-card').forEach(c => c.classList.remove('drag-over'));
+      if (over && +over.dataset.idx !== dragSrcIdx) over.classList.add('drag-over');
+      lastTouchTarget = over;
+    }, { passive: false });
+
+    handle.addEventListener('touchend', e => {
+      if (dragSrcIdx === null) return;
+      // Clean up ghost & styles
+      if (touchClone) { touchClone.remove(); touchClone = null; }
+      document.querySelectorAll('.day-card').forEach(c => c.classList.remove('dragging', 'drag-over'));
+
+      const touch = e.changedTouches[0];
+      const over  = lastTouchTarget || cardAtPoint(touch.clientX, touch.clientY);
+      if (over) doSwap(+over.dataset.idx);
+      else dragSrcIdx = null;
+      lastTouchTarget = null;
+    });
+
+    handle.addEventListener('touchcancel', () => {
+      if (touchClone) { touchClone.remove(); touchClone = null; }
+      document.querySelectorAll('.day-card').forEach(c => c.classList.remove('dragging', 'drag-over'));
+      dragSrcIdx = null;
+      lastTouchTarget = null;
     });
   });
 
-  // ── Drop targets (cards) ──
+  // ── Mouse drop targets (desktop) ──
   document.querySelectorAll('.day-card').forEach(card => {
     card.addEventListener('dragover', e => {
       e.preventDefault();
       e.dataTransfer.dropEffect = 'move';
-      if (+card.dataset.idx !== dragSrcIdx) {
-        card.classList.add('drag-over');
-      }
+      if (+card.dataset.idx !== dragSrcIdx) card.classList.add('drag-over');
     });
 
     card.addEventListener('dragleave', e => {
-      // Only remove if leaving the card entirely (not entering a child)
-      if (!card.contains(e.relatedTarget)) {
-        card.classList.remove('drag-over');
-      }
+      if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
     });
 
     card.addEventListener('drop', e => {
       e.preventDefault();
       card.classList.remove('drag-over');
-
-      const targetIdx = +card.dataset.idx;
-      if (dragSrcIdx === null || dragSrcIdx === targetIdx) return;
-
-      // Capture names before swap for the toast
-      const srcName = weekData[dragSrcIdx].name;
-      const tgtName = weekData[targetIdx].name;
-
-      // Swap
-      [weekData[dragSrcIdx], weekData[targetIdx]] = [weekData[targetIdx], weekData[dragSrcIdx]];
-      saveWeekData(currentMonday, weekData);
-      if (FIREBASE_READY) syncToFirebase();
-
-      toast(`${srcName} og ${tgtName} byttet ✓`);
-      dragSrcIdx = null;
-      renderGrid();
+      doSwap(+card.dataset.idx);
     });
   });
 
