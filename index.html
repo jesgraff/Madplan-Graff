@@ -375,7 +375,13 @@ function storageKey(m) { return 'madplan_' + m.toISOString().slice(0, 10); }
 function loadData(m) {
   try {
     var raw = localStorage.getItem(storageKey(m));
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      var parsed = JSON.parse(raw);
+      // Always enforce correct day names regardless of what is stored
+      return parsed.map(function(d, i) {
+        return { name: DAYS[i], meal: d.meal || '', image: d.image || '' };
+      });
+    }
   } catch(e) {}
   return DAYS.map(function(name) { return {name: name, meal: '', image: ''}; });
 }
