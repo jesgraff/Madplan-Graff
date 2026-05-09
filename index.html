@@ -10,288 +10,166 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-–g900: #0f2419;
-–g800: #1a3a2a;
-–g700: #245235;
-–g600: #2d6a4f;
-–g500: #40916c;
-–g400: #52b788;
-–g300: #74c69d;
-–g200: #95d5b2;
-–g100: #d8f3dc;
-–g050: #f0faf2;
-–cream: #faf8f3;
-–white: #ffffff;
-–text:  #1a2e22;
-–muted: #5a7a65;
+–g900: #0f2419; –g800: #1a3a2a; –g700: #245235; –g600: #2d6a4f;
+–g500: #40916c; –g400: #52b788; –g300: #74c69d; –g200: #95d5b2;
+–g100: #d8f3dc; –g050: #f0faf2; –cream: #faf8f3; –white: #ffffff;
+–text: #1a2e22; –muted: #5a7a65;
 –shadow-sm: 0 1px 4px rgba(15,36,25,0.08);
 –shadow-md: 0 4px 20px rgba(15,36,25,0.12);
 –shadow-lg: 0 12px 40px rgba(15,36,25,0.18);
-–radius: 16px;
-–radius-sm: 10px;
+–radius: 16px; –radius-sm: 10px;
 }
 
 html { scroll-behavior: smooth; }
+body { font-family: ‘DM Sans’, sans-serif; background: var(–cream); color: var(–text); min-height: 100vh; overflow-x: hidden; }
 
-body {
-font-family: ‘DM Sans’, sans-serif;
-background: var(–cream);
-color: var(–text);
-min-height: 100vh;
-overflow-x: hidden;
-}
-
-/* ── HEADER ── */
+/* HEADER */
 .header {
 background: linear-gradient(135deg, var(–g800) 0%, var(–g700) 60%, var(–g600) 100%);
-padding: 0 32px;
-position: relative;
-overflow: hidden;
-box-shadow: var(–shadow-lg);
+padding: 0 32px; position: relative; overflow: hidden; box-shadow: var(–shadow-lg);
 }
 .header::before {
-content: ‘’;
-position: absolute; top: -80px; right: -80px;
-width: 280px; height: 280px;
+content: ‘’; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px;
 background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, transparent 70%);
-border-radius: 50%;
-pointer-events: none;
+border-radius: 50%; pointer-events: none;
 }
 .header::after {
-content: ‘’;
-position: absolute; bottom: -60px; left: 20%;
-width: 200px; height: 200px;
+content: ‘’; position: absolute; bottom: -60px; left: 20%; width: 200px; height: 200px;
 background: radial-gradient(circle, rgba(149,213,178,0.1) 0%, transparent 70%);
-border-radius: 50%;
-pointer-events: none;
+border-radius: 50%; pointer-events: none;
 }
 .header-inner {
-max-width: 1240px;
-margin: 0 auto;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 24px 0;
-position: relative; z-index: 1;
-gap: 16px;
+max-width: 1240px; margin: 0 auto;
+display: flex; align-items: center; justify-content: space-between;
+padding: 24px 0; position: relative; z-index: 1; gap: 16px;
 }
-.site-title {
-font-family: ‘Playfair Display’, serif;
-font-size: clamp(1.3rem, 3vw, 2rem);
-color: var(–white);
-line-height: 1.15;
-}
+.site-title { font-family: ‘Playfair Display’, serif; font-size: clamp(1.3rem, 3vw, 2rem); color: var(–white); line-height: 1.15; }
 .site-title em { color: var(–g200); font-style: italic; }
 .week-meta { text-align: center; flex-shrink: 0; }
-.week-num {
-font-family: ‘Playfair Display’, serif;
-font-size: 1rem; color: var(–g200);
-font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-}
+.week-num { font-family: ‘Playfair Display’, serif; font-size: 1rem; color: var(–g200); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
 .week-range { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 3px; }
-
 .nav-btn {
-background: rgba(255,255,255,0.1);
-border: 1.5px solid rgba(255,255,255,0.2);
-border-radius: var(–radius-sm);
-color: var(–white);
-padding: 10px 20px;
-font-family: ‘DM Sans’, sans-serif;
-font-size: 0.85rem; font-weight: 500;
-cursor: pointer;
-display: flex; align-items: center; gap: 8px;
+background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
+border-radius: var(–radius-sm); color: var(–white); padding: 10px 20px;
+font-family: ‘DM Sans’, sans-serif; font-size: 0.85rem; font-weight: 500;
+cursor: pointer; display: flex; align-items: center; gap: 8px;
 transition: background 0.2s, border-color 0.2s, transform 0.15s;
 white-space: nowrap; flex-shrink: 0;
 }
 .nav-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.35); transform: scale(1.02); }
 .nav-btn:active { transform: scale(0.98); }
-
 .leaf-deco { position: absolute; pointer-events: none; opacity: 0.07; }
 
-/* ── MAIN ── */
+/* MAIN */
 .main { max-width: 1240px; margin: 0 auto; padding: 28px 24px 60px; }
 
-/* ── HINT BAR ── */
+/* HINT BAR */
 .hint-bar {
 display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-padding: 10px 16px;
-background: var(–g050); border: 1px solid var(–g100);
-border-radius: var(–radius-sm);
-font-size: 0.78rem; color: var(–muted);
+padding: 10px 16px; background: var(–g050); border: 1px solid var(–g100);
+border-radius: var(–radius-sm); font-size: 0.78rem; color: var(–muted);
 }
 .hint-item { display: flex; align-items: center; gap: 6px; }
-.hint-icon {
-width: 24px; height: 24px; background: var(–g100);
-border-radius: 6px; display: flex; align-items: center; justify-content: center;
-font-size: 0.85rem; flex-shrink: 0;
-}
+.hint-icon { width: 24px; height: 24px; background: var(–g100); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
 
-/* ── DAYS GRID ── */
-.days-grid {
-display: grid;
-grid-template-columns: repeat(7, 1fr);
-gap: 14px;
-margin-bottom: 20px;
-}
+/* DAYS GRID */
+.days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; margin-bottom: 20px; }
 
-/* ── DAY CARD ── */
+/* DAY CARD */
 .day-card {
-background: var(–white);
-border-radius: var(–radius);
-border: 1.5px solid var(–g100);
-box-shadow: var(–shadow-sm);
-overflow: hidden;
-display: flex; flex-direction: column;
+background: var(–white); border-radius: var(–radius); border: 1.5px solid var(–g100);
+box-shadow: var(–shadow-sm); overflow: hidden; display: flex; flex-direction: column;
 transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s, opacity 0.2s;
-position: relative;
-animation: fadeUp 0.4s ease both;
-user-select: none;
--webkit-user-select: none;
+position: relative; animation: fadeUp 0.4s ease both;
+user-select: none; -webkit-user-select: none;
 }
-.day-card:nth-child(1) { animation-delay: 0.05s; }
-.day-card:nth-child(2) { animation-delay: 0.10s; }
-.day-card:nth-child(3) { animation-delay: 0.15s; }
-.day-card:nth-child(4) { animation-delay: 0.20s; }
-.day-card:nth-child(5) { animation-delay: 0.25s; }
-.day-card:nth-child(6) { animation-delay: 0.30s; }
-.day-card:nth-child(7) { animation-delay: 0.35s; }
-
-@keyframes fadeUp {
-from { opacity: 0; transform: translateY(12px); }
-to   { opacity: 1; transform: translateY(0); }
-}
+.day-card:nth-child(1){animation-delay:.05s} .day-card:nth-child(2){animation-delay:.10s}
+.day-card:nth-child(3){animation-delay:.15s} .day-card:nth-child(4){animation-delay:.20s}
+.day-card:nth-child(5){animation-delay:.25s} .day-card:nth-child(6){animation-delay:.30s}
+.day-card:nth-child(7){animation-delay:.35s}
+@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
 
 .day-card:hover { box-shadow: var(–shadow-md); transform: translateY(-2px); border-color: var(–g300); }
 .day-card.today { border-color: var(–g400); box-shadow: 0 0 0 3px rgba(82,183,136,0.15), var(–shadow-md); }
 .day-card.dragging { opacity: 0.4; transform: scale(0.97); }
 .day-card.drag-over { border-color: var(–g400) !important; background: var(–g050); transform: translateY(-4px) scale(1.02) !important; box-shadow: var(–shadow-lg) !important; }
 
-/* today badge */
 .today-badge {
-position: absolute; top: 9px; right: 9px;
-background: var(–g400); color: var(–white);
+position: absolute; top: 9px; right: 9px; background: var(–g400); color: var(–white);
 font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
 padding: 3px 9px; border-radius: 20px; z-index: 3; pointer-events: none;
 }
 
-/* ── DRAG HANDLE ── */
+/* DRAG HANDLE */
 .drag-handle {
-position: absolute; top: 8px; left: 8px;
+position: absolute; top: 9px; left: 9px;
 width: 28px; height: 28px;
-display: flex; flex-direction: column;
-align-items: center; justify-content: center; gap: 3px;
-cursor: grab;
-z-index: 10;
-border-radius: 6px;
-background: transparent;
-transition: opacity 0.2s, background 0.15s;
-/* KEY: disables browser scroll/zoom handling so touchmove fires reliably */
-touch-action: none;
--webkit-touch-callout: none;
-opacity: 0.2;
+display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+cursor: grab; z-index: 10; border-radius: 6px;
+background: rgba(45,106,79,0.08);
+touch-action: none; -webkit-touch-callout: none;
+opacity: 0; transition: opacity 0.2s, background 0.15s;
 }
-.drag-handle:hover, .drag-handle:active {
-background: rgba(45,106,79,0.12);
-opacity: 1 !important;
-cursor: grabbing;
-}
-.day-card:hover .drag-handle { opacity: 0.6; }
+.day-card:hover .drag-handle { opacity: 0.7; }
+@media (hover: none) { .drag-handle { opacity: 0.55 !important; } }
+.drag-handle:hover { background: rgba(45,106,79,0.15); opacity: 1 !important; cursor: grabbing; }
+.drag-handle span { display: block; width: 14px; height: 2px; background: var(–g700); border-radius: 2px; pointer-events: none; }
 
-/* Always visible on touch screens */
-@media (hover: none) {
-.drag-handle { opacity: 0.5; }
-}
-
-.drag-handle span {
-display: block; width: 14px; height: 2px;
-background: var(–g700); border-radius: 2px; pointer-events: none;
-}
-
-/* card header */
+/* CARD HEAD */
 .card-head {
 background: linear-gradient(180deg, var(–g050) 0%, rgba(240,250,242,0) 100%);
-padding: 12px 12px 10px 32px;
-border-bottom: 1px solid var(–g100);
-flex-shrink: 0;
+padding: 12px 12px 10px 32px; border-bottom: 1px solid var(–g100); flex-shrink: 0;
 pointer-events: none;
 }
 .card-dayname { font-family: ‘Playfair Display’, serif; font-size: 1rem; color: var(–g800); line-height: 1; }
 .card-date { font-size: 0.72rem; color: var(–muted); margin-top: 3px; }
 
-/* image area */
-.card-img-wrap {
-width: 100%; height: 120px;
-position: relative; overflow: hidden;
-flex-shrink: 0; background: var(–g050);
-}
-.card-img-wrap img {
-width: 100%; height: 100%; object-fit: cover;
-display: block; transition: transform 0.3s; pointer-events: none;
-}
+/* IMAGE */
+.card-img-wrap { width: 100%; height: 120px; position: relative; overflow: hidden; flex-shrink: 0; background: var(–g050); }
+.card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; pointer-events: none; }
 .day-card:hover .card-img-wrap img { transform: scale(1.04); }
-
 .upload-overlay {
-position: absolute; inset: 0;
-display: flex; flex-direction: column;
+position: absolute; inset: 0; display: flex; flex-direction: column;
 align-items: center; justify-content: center; gap: 5px;
 background: var(–g050); cursor: pointer; transition: background 0.2s;
 }
 .upload-overlay:hover { background: var(–g100); }
 .upload-overlay .u-icon { font-size: 1.6rem; opacity: 0.4; pointer-events: none; }
 .upload-overlay .u-text { font-size: 0.67rem; color: var(–muted); pointer-events: none; }
-
 .change-photo-btn {
-position: absolute; inset: 0;
-background: rgba(15,36,25,0.55); color: var(–white);
-border: none; cursor: pointer;
-font-family: ‘DM Sans’, sans-serif; font-size: 0.75rem; font-weight: 500;
+position: absolute; inset: 0; background: rgba(15,36,25,0.55); color: var(–white);
+border: none; cursor: pointer; font-family: ‘DM Sans’, sans-serif; font-size: 0.75rem; font-weight: 500;
 display: flex; align-items: center; justify-content: center; gap: 6px;
 opacity: 0; transition: opacity 0.2s;
 }
 .card-img-wrap:hover .change-photo-btn { opacity: 1; }
 .file-input { display: none; }
 
-/* card body */
+/* CARD BODY */
 .card-body { padding: 10px 12px 12px; flex: 1; display: flex; flex-direction: column; }
 .meal-input {
-width: 100%; border: none; outline: none;
-font-family: ‘DM Sans’, sans-serif; font-size: 0.85rem;
-color: var(–text); background: transparent;
-resize: none; line-height: 1.45;
--webkit-user-drag: none;
-user-select: text; -webkit-user-select: text;
-cursor: text;
+width: 100%; border: none; outline: none; font-family: ‘DM Sans’, sans-serif;
+font-size: 0.85rem; color: var(–text); background: transparent; resize: none; line-height: 1.45;
+-webkit-user-drag: none; user-select: text; -webkit-user-select: text; cursor: text;
 }
 .meal-input::placeholder { color: #bbb; font-style: italic; }
-.meal-input:focus {
-background: var(–g050); border-radius: 8px;
-padding: 6px 8px; margin: -6px -8px; width: calc(100% + 16px);
-}
-
+.meal-input:focus { background: var(–g050); border-radius: 8px; padding: 6px 8px; margin: -6px -8px; width: calc(100% + 16px); }
 .save-tick {
-font-size: 0.65rem; color: var(–g400);
-display: flex; align-items: center; gap: 4px;
-margin-top: 6px; height: 14px;
-opacity: 0; transition: opacity 0.4s;
+font-size: 0.65rem; color: var(–g400); display: flex; align-items: center; gap: 4px;
+margin-top: 6px; height: 14px; opacity: 0; transition: opacity 0.4s;
 }
 .save-tick.show { opacity: 1; }
-.save-tick::before {
-content: ‘’; width: 6px; height: 6px;
-background: var(–g400); border-radius: 50%; display: inline-block;
-}
+.save-tick::before { content: ‘’; width: 6px; height: 6px; background: var(–g400); border-radius: 50%; display: inline-block; }
 
-/* ── MOBILE ── */
+/* MOBILE */
 @media (max-width: 860px) {
 .days-grid { grid-template-columns: 1fr; gap: 16px; }
 .day-card { flex-direction: row; min-height: 100px; }
 .card-head {
-width: 110px; flex-shrink: 0;
-border-bottom: none; border-right: 1px solid var(–g100);
-padding: 14px 10px 14px 14px;
-display: flex; flex-direction: column; justify-content: center;
-pointer-events: none;
+width: 110px; flex-shrink: 0; border-bottom: none; border-right: 1px solid var(–g100);
+padding: 14px 10px 14px 36px; display: flex; flex-direction: column; justify-content: center;
 }
-.drag-handle { top: 50%; transform: translateY(-50%); left: 6px; opacity: 0.5; }
+.drag-handle { top: 50%; transform: translateY(-50%); left: 8px; }
 .card-dayname { font-size: 0.95rem; }
 .card-img-wrap { width: 100px; flex-shrink: 0; height: 100px; }
 .card-body { padding: 10px 14px; justify-content: center; }
@@ -300,49 +178,35 @@ pointer-events: none;
 .site-title { font-size: 1.3rem; text-align: center; }
 }
 
-/* ── SPINNER ── */
-.spinner {
-position: absolute; inset: 0;
-background: rgba(255,255,255,0.85);
-display: flex; align-items: center; justify-content: center; z-index: 10;
-}
-.spinner::after {
-content: ‘’; width: 26px; height: 26px;
-border: 3px solid var(–g100); border-top-color: var(–g400);
-border-radius: 50%; animation: spin 0.7s linear infinite;
-}
+/* SPINNER */
+.spinner { position: absolute; inset: 0; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; z-index: 10; }
+.spinner::after { content: ‘’; width: 26px; height: 26px; border: 3px solid var(–g100); border-top-color: var(–g400); border-radius: 50%; animation: spin 0.7s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ── TOAST ── */
+/* TOAST */
 #toast {
 position: fixed; bottom: 28px; left: 50%;
 transform: translateX(-50%) translateY(20px);
 background: var(–g800); color: var(–white);
-padding: 11px 22px; border-radius: 40px;
-font-size: 0.82rem; font-weight: 500;
-opacity: 0; pointer-events: none;
-transition: opacity 0.3s, transform 0.3s;
-z-index: 9999; white-space: nowrap;
+padding: 11px 22px; border-radius: 40px; font-size: 0.82rem; font-weight: 500;
+opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 9999; white-space: nowrap;
 }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* ── TOUCH GHOST ── */
+/* TOUCH GHOST */
 .touch-ghost {
-position: fixed;
-pointer-events: none;
-z-index: 9998;
-opacity: 0.85;
-border-radius: var(–radius);
-box-shadow: 0 20px 60px rgba(15,36,25,0.4);
-transform: rotate(2deg) scale(1.05);
-overflow: hidden;
+position: fixed; pointer-events: none; z-index: 9998; opacity: 0.85;
+border-radius: var(–radius); box-shadow: 0 20px 60px rgba(15,36,25,0.4);
+transform: rotate(2deg) scale(1.05); overflow: hidden;
+background: linear-gradient(135deg, var(–g700), var(–g500));
+display: flex; align-items: center; justify-content: center;
+color: #fff; font-family: ‘Playfair Display’, serif; font-size: 1.1rem; text-align: center; padding: 12px;
 }
 
-/* ── SETUP BANNER ── */
+/* SETUP BANNER */
 .setup-banner {
-background: linear-gradient(135deg, var(–g800), var(–g700));
-color: var(–white); padding: 14px 20px;
-text-align: center; font-size: 0.82rem;
+background: linear-gradient(135deg, var(–g800), var(–g700)); color: var(–white);
+padding: 14px 20px; text-align: center; font-size: 0.82rem;
 display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 .setup-banner strong { color: var(–g200); }
@@ -386,396 +250,285 @@ display: flex; align-items: center; justify-content: center; gap: 10px;
     <div class="hint-item"><div class="hint-icon">📱</div> Virker på iPad og mobil</div>
   </div>
 </main>
-
 <div id="toast"></div>
 
 <script type="module">
-
-// ══════════════════════════════════════════════════
-//  FIREBASE
-// ══════════════════════════════════════════════════
-let db = null;
-let FIREBASE_READY = false;
-
+// FIREBASE
+let db = null, FIREBASE_READY = false;
 async function initFirebase() {
   try {
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
     const { getFirestore, doc, setDoc, getDoc, onSnapshot } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-    const FIREBASE_CONFIG = {
-      apiKey:            "AIzaSyAYpGKhXwYqw3Vh9NeWeiimPI8YNCjZiYAs",
-      authDomain:        "madplan-graff.firebaseapp.com",
-      projectId:         "madplan-graff",
-      storageBucket:     "madplan-graff.firebasestorage.app",
+    const app = initializeApp({
+      apiKey: "AIzaSyAYpGKhXwYqw3Vh9NeWeiimPI8YNCjZiYAs",
+      authDomain: "madplan-graff.firebaseapp.com",
+      projectId: "madplan-graff",
+      storageBucket: "madplan-graff.firebasestorage.app",
       messagingSenderId: "10854566370068",
-      appId:             "1:10854566370068:web:dbbaf9daa86e3af9dc9729"
-    };
-    const app = initializeApp(FIREBASE_CONFIG);
+      appId: "1:10854566370068:web:dbbaf9daa86e3af9dc9729"
+    });
     db = getFirestore(app);
     FIREBASE_READY = true;
-    window._firestore = { doc, setDoc, getDoc, onSnapshot };
+    window._fs = { doc, setDoc, getDoc, onSnapshot };
     document.getElementById('setupBanner').style.display = 'none';
     await loadFromFirebase(currentMonday);
     startListener(currentMonday);
   } catch(e) { console.warn('Firebase fejl:', e); }
 }
 
-// ══════════════════════════════════════════════════
-//  HELPERS
-// ══════════════════════════════════════════════════
+// HELPERS
 const DA_DAYS   = ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'];
 const DA_MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
-
 function getMonday(d) {
   const dt = new Date(d), day = dt.getDay();
-  dt.setDate(dt.getDate() + (day === 0 ? -6 : 1 - day));
-  dt.setHours(0,0,0,0);
-  return dt;
+  dt.setDate(dt.getDate() + (day===0 ? -6 : 1-day)); dt.setHours(0,0,0,0); return dt;
 }
-function getWeekNumber(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+function getWeekNum(d) {
+  const u = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
+  u.setUTCDate(u.getUTCDate()+4-(u.getUTCDay()||7));
+  return Math.ceil((((u-new Date(Date.UTC(u.getUTCFullYear(),0,1)))/86400000)+1)/7);
 }
-function fmtDate(d) { return `${d.getDate()}. ${DA_MONTHS[d.getMonth()]}`; }
+function fmt(d) { return `${d.getDate()}. ${DA_MONTHS[d.getMonth()]}`; }
 function toast(msg) {
   const el = document.getElementById('toast');
   el.textContent = msg; el.classList.add('show');
-  clearTimeout(el._t);
-  el._t = setTimeout(() => el.classList.remove('show'), 2400);
+  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'),2400);
 }
 
-// ══════════════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════════════
+// STATE
 let currentMonday = getMonday(new Date());
+const key = m => `madplan_${m.toISOString().slice(0,10)}`;
+function load(m) { const r=localStorage.getItem(key(m)); return r?JSON.parse(r):DA_DAYS.map(name=>({name,meal:'',image:''})); }
+function save(m,data) { localStorage.setItem(key(m),JSON.stringify(data)); }
+let weekData = load(currentMonday);
 
-function storageKey(m) { return `madplan_${m.toISOString().slice(0,10)}`; }
-function loadWeekData(m) {
-  const raw = localStorage.getItem(storageKey(m));
-  return raw ? JSON.parse(raw) : DA_DAYS.map(name => ({ name, meal: '', image: '' }));
-}
-function saveWeekData(m, data) { localStorage.setItem(storageKey(m), JSON.stringify(data)); }
-
-let weekData = loadWeekData(currentMonday);
-
-// ══════════════════════════════════════════════════
-//  RENDER
-// ══════════════════════════════════════════════════
-function buildWeekDates(monday) {
-  return Array.from({ length: 7 }, (_, i) => {
-    const d = new Date(monday); d.setDate(monday.getDate() + i); return d;
-  });
+// RENDER
+function dates(monday) {
+  return Array.from({length:7},(_,i)=>{ const d=new Date(monday); d.setDate(monday.getDate()+i); return d; });
 }
 function isToday(d) {
-  const t = new Date();
-  return d.getDate()===t.getDate() && d.getMonth()===t.getMonth() && d.getFullYear()===t.getFullYear();
+  const t=new Date();
+  return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear();
 }
 function renderHeader() {
-  const sun = new Date(currentMonday); sun.setDate(currentMonday.getDate() + 6);
-  document.getElementById('weekNum').textContent   = `Uge ${getWeekNumber(currentMonday)}`;
-  document.getElementById('weekRange').textContent = `${fmtDate(currentMonday)} – ${fmtDate(sun)} ${sun.getFullYear()}`;
+  const sun=new Date(currentMonday); sun.setDate(currentMonday.getDate()+6);
+  document.getElementById('weekNum').textContent=`Uge ${getWeekNum(currentMonday)}`;
+  document.getElementById('weekRange').textContent=`${fmt(currentMonday)} – ${fmt(sun)} ${sun.getFullYear()}`;
 }
-
 function renderGrid() {
-  const grid  = document.getElementById('daysGrid');
-  const dates = buildWeekDates(currentMonday);
-  grid.innerHTML = '';
+  const grid=document.getElementById('daysGrid');
+  const dd=dates(currentMonday);
+  grid.innerHTML='';
+  weekData.forEach((day,idx)=>{
+    const today=isToday(dd[idx]);
+    const card=document.createElement('div');
+    card.className='day-card'+(today?' today':'');
+    card.dataset.idx=idx;
 
-  weekData.forEach((day, idx) => {
-    const date  = dates[idx];
-    const today = isToday(date);
-    const card  = document.createElement('div');
-    card.className = 'day-card' + (today ? ' today' : '');
-    card.dataset.idx = idx;
+    // DRAG HANDLE
+    const h=document.createElement('div');
+    h.className='drag-handle';
+    h.setAttribute('draggable','true');
+    h.dataset.idx=idx;
+    h.title='Træk for at bytte dag';
+    h.innerHTML='<span></span><span></span><span></span>';
+    card.appendChild(h);
 
-    // Drag handle
-    const handle = document.createElement('div');
-    handle.className = 'drag-handle';
-    handle.setAttribute('draggable', 'true');
-    handle.dataset.idx = idx;
-    handle.title = 'Træk for at bytte dag';
-    handle.innerHTML = '<span></span><span></span><span></span>';
-    card.appendChild(handle);
-
-    if (today) {
-      const badge = document.createElement('div');
-      badge.className = 'today-badge';
-      badge.textContent = 'I dag';
-      card.appendChild(badge);
+    if(today){
+      const b=document.createElement('div');
+      b.className='today-badge'; b.textContent='I dag'; card.appendChild(b);
     }
 
-    const head = document.createElement('div');
-    head.className = 'card-head';
-    head.innerHTML = `<div class="card-dayname">${day.name}</div><div class="card-date">${fmtDate(date)}</div>`;
+    // HEAD
+    const head=document.createElement('div');
+    head.className='card-head';
+    head.innerHTML=`<div class="card-dayname">${day.name}</div><div class="card-date">${fmt(dd[idx])}</div>`;
     card.appendChild(head);
 
-    const imgWrap = document.createElement('div');
-    imgWrap.className = 'card-img-wrap';
-    imgWrap.dataset.idx = idx;
-    if (day.image) {
-      imgWrap.innerHTML = `
-        <img src="${day.image}" alt="${day.meal}">
-        <button class="change-photo-btn" data-idx="${idx}">📷 Skift billede</button>
-        <input type="file" class="file-input" accept="image/*" data-idx="${idx}">`;
+    // IMAGE
+    const iw=document.createElement('div');
+    iw.className='card-img-wrap'; iw.dataset.idx=idx;
+    if(day.image){
+      iw.innerHTML=`<img src="${day.image}" alt=""><button class="change-photo-btn" data-idx="${idx}">📷 Skift billede</button><input type="file" class="file-input" accept="image/*" data-idx="${idx}">`;
     } else {
-      imgWrap.innerHTML = `
-        <div class="upload-overlay" data-idx="${idx}">
-          <div class="u-icon">🍽️</div>
-          <div class="u-text">Klik for at uploade billede</div>
-        </div>
-        <input type="file" class="file-input" accept="image/*" data-idx="${idx}">`;
+      iw.innerHTML=`<div class="upload-overlay" data-idx="${idx}"><div class="u-icon">🍽️</div><div class="u-text">Klik for billede</div></div><input type="file" class="file-input" accept="image/*" data-idx="${idx}">`;
     }
-    card.appendChild(imgWrap);
+    card.appendChild(iw);
 
-    const body = document.createElement('div');
-    body.className = 'card-body';
-    const ta = document.createElement('textarea');
-    ta.className = 'meal-input';
-    ta.dataset.idx = idx;
-    ta.placeholder = 'Hvad spiser vi?';
-    ta.rows = 2;
-    ta.value = day.meal;
-    ta.addEventListener('mousedown', e => e.stopPropagation());
-    ta.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+    // BODY
+    const body=document.createElement('div');
+    body.className='card-body';
+    const ta=document.createElement('textarea');
+    ta.className='meal-input'; ta.dataset.idx=idx;
+    ta.placeholder='Hvad spiser vi?'; ta.rows=2; ta.value=day.meal;
+    ta.addEventListener('mousedown',e=>e.stopPropagation());
+    ta.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
     body.appendChild(ta);
-
-    const tick = document.createElement('div');
-    tick.className = 'save-tick';
-    tick.id = `tick-${idx}`;
-    tick.textContent = 'Gemt';
+    const tick=document.createElement('div');
+    tick.className='save-tick'; tick.id=`tick-${idx}`; tick.textContent='Gemt';
     body.appendChild(tick);
-
     card.appendChild(body);
     grid.appendChild(card);
   });
-
   attachEvents();
 }
+function render(){ renderHeader(); renderGrid(); }
 
-function render() { renderHeader(); renderGrid(); }
+// DRAG & DROP
+let dragSrcIdx=null, touchGhost=null, touchOffX=0, touchOffY=0, lastOver=null;
 
-// ══════════════════════════════════════════════════
-//  DRAG & DROP — mouse (desktop) + touch (iPad)
-// ══════════════════════════════════════════════════
-let dragSrcIdx   = null;
-let touchGhost   = null;
-let touchOffX    = 0;
-let touchOffY    = 0;
-let lastOverCard = null;
-
-function doSwap(targetIdx) {
-  if (dragSrcIdx === null || dragSrcIdx === targetIdx) { dragSrcIdx = null; return; }
-  const srcName = weekData[dragSrcIdx].name;
-  const tgtName = weekData[targetIdx].name;
-  [weekData[dragSrcIdx], weekData[targetIdx]] = [weekData[targetIdx], weekData[dragSrcIdx]];
-  saveWeekData(currentMonday, weekData);
-  if (FIREBASE_READY) syncToFirebase();
-  toast(`${srcName} og ${tgtName} byttet ✓`);
-  dragSrcIdx = null;
-  renderGrid();
+function doSwap(tgt){
+  if(dragSrcIdx===null||dragSrcIdx===tgt){dragSrcIdx=null;return;}
+  const sn=weekData[dragSrcIdx].name, tn=weekData[tgt].name;
+  [weekData[dragSrcIdx],weekData[tgt]]=[weekData[tgt],weekData[dragSrcIdx]];
+  save(currentMonday,weekData);
+  if(FIREBASE_READY)syncFB();
+  toast(`${sn} og ${tn} byttet ✓`);
+  dragSrcIdx=null; renderGrid();
+}
+function clearStyles(){ document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('dragging','drag-over')); }
+function cardAt(x,y){
+  if(touchGhost) touchGhost.style.visibility='hidden';
+  const el=document.elementFromPoint(x,y);
+  if(touchGhost) touchGhost.style.visibility='';
+  return el?el.closest('.day-card'):null;
 }
 
-function clearDragStyles() {
-  document.querySelectorAll('.day-card').forEach(c => c.classList.remove('dragging', 'drag-over'));
-}
-
-function buildGhost(card) {
-  const rect = card.getBoundingClientRect();
-  const g = document.createElement('div');
-  g.className = 'touch-ghost';
-  g.style.cssText = `width:${rect.width}px;height:${rect.height}px;top:${rect.top}px;left:${rect.left}px;`;
-  // Clone only the visual structure
-  g.innerHTML = `
-    <div style="height:100%;background:linear-gradient(135deg,var(--g700),var(--g500));
-      display:flex;align-items:center;justify-content:center;
-      color:#fff;font-family:'Playfair Display',serif;font-size:1.1rem;padding:12px;text-align:center;">
-      ${card.querySelector('.card-dayname').textContent}
-    </div>`;
-  document.body.appendChild(g);
-  return g;
-}
-
-function cardFromPoint(x, y) {
-  if (touchGhost) touchGhost.style.visibility = 'hidden';
-  const el = document.elementFromPoint(x, y);
-  if (touchGhost) touchGhost.style.visibility = '';
-  return el ? el.closest('.day-card') : null;
-}
-
-function attachEvents() {
-
-  document.querySelectorAll('.drag-handle').forEach(handle => {
-
-    // Mouse drag (desktop)
-    handle.addEventListener('dragstart', e => {
-      dragSrcIdx = +handle.dataset.idx;
-      e.dataTransfer.effectAllowed = 'move';
-      e.dataTransfer.setData('text/plain', String(dragSrcIdx));
-      requestAnimationFrame(() => handle.closest('.day-card').classList.add('dragging'));
+function attachEvents(){
+  document.querySelectorAll('.drag-handle').forEach(h=>{
+    // MOUSE
+    h.addEventListener('dragstart',e=>{
+      dragSrcIdx=+h.dataset.idx;
+      e.dataTransfer.effectAllowed='move';
+      e.dataTransfer.setData('text/plain',String(dragSrcIdx));
+      requestAnimationFrame(()=>h.closest('.day-card').classList.add('dragging'));
     });
-    handle.addEventListener('dragend', () => { clearDragStyles(); dragSrcIdx = null; });
+    h.addEventListener('dragend',()=>{ clearStyles(); dragSrcIdx=null; });
 
-    // Touch drag (iPad/iPhone)
-    // touchstart: passive OK, we just record start position
-    handle.addEventListener('touchstart', e => {
-      const touch  = e.touches[0];
-      dragSrcIdx   = +handle.dataset.idx;
-      const card   = handle.closest('.day-card');
-      const rect   = card.getBoundingClientRect();
-      touchOffX    = touch.clientX - rect.left;
-      touchOffY    = touch.clientY - rect.top;
-      lastOverCard = null;
-      card.classList.add('dragging');
-      touchGhost   = buildGhost(card);
-    }, { passive: true });
+    // TOUCH start – passive OK, just records start
+    h.addEventListener('touchstart',e=>{
+      const t=e.touches[0];
+      dragSrcIdx=+h.dataset.idx;
+      const card=h.closest('.day-card'), r=card.getBoundingClientRect();
+      touchOffX=t.clientX-r.left; touchOffY=t.clientY-r.top;
+      lastOver=null; card.classList.add('dragging');
+      const g=document.createElement('div');
+      g.className='touch-ghost';
+      g.style.cssText=`width:${r.width}px;height:${r.height}px;top:${r.top}px;left:${r.left}px;`;
+      g.textContent=card.querySelector('.card-dayname').textContent;
+      document.body.appendChild(g);
+      touchGhost=g;
+    },{passive:true});
 
-    // touchmove: NON-passive so we can call preventDefault (requires touch-action:none on handle)
-    handle.addEventListener('touchmove', e => {
-      if (dragSrcIdx === null) return;
-      e.preventDefault(); // blocks scroll — only fires because touch-action:none is set on .drag-handle
-      const touch = e.touches[0];
-      touchGhost.style.left = (touch.clientX - touchOffX) + 'px';
-      touchGhost.style.top  = (touch.clientY - touchOffY) + 'px';
-
-      const over = cardFromPoint(touch.clientX, touch.clientY);
-      if (over !== lastOverCard) {
-        document.querySelectorAll('.day-card').forEach(c => c.classList.remove('drag-over'));
-        if (over && +over.dataset.idx !== dragSrcIdx) over.classList.add('drag-over');
-        lastOverCard = over;
+    // TOUCH move – NON-passive, preventDefault stops scroll
+    // Works because .drag-handle has touch-action:none in CSS
+    h.addEventListener('touchmove',e=>{
+      if(dragSrcIdx===null)return;
+      e.preventDefault();
+      const t=e.touches[0];
+      touchGhost.style.left=(t.clientX-touchOffX)+'px';
+      touchGhost.style.top=(t.clientY-touchOffY)+'px';
+      const over=cardAt(t.clientX,t.clientY);
+      if(over!==lastOver){
+        document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('drag-over'));
+        if(over&&+over.dataset.idx!==dragSrcIdx) over.classList.add('drag-over');
+        lastOver=over;
       }
-    }, { passive: false });
+    },{passive:false});
 
-    handle.addEventListener('touchend', e => {
-      if (dragSrcIdx === null) return;
-      if (touchGhost) { touchGhost.remove(); touchGhost = null; }
-      clearDragStyles();
-      const touch = e.changedTouches[0];
-      const over  = lastOverCard || cardFromPoint(touch.clientX, touch.clientY);
-      if (over) doSwap(+over.dataset.idx); else dragSrcIdx = null;
-      lastOverCard = null;
-    }, { passive: true });
+    h.addEventListener('touchend',e=>{
+      if(dragSrcIdx===null)return;
+      if(touchGhost){touchGhost.remove();touchGhost=null;}
+      clearStyles();
+      const t=e.changedTouches[0];
+      const over=lastOver||cardAt(t.clientX,t.clientY);
+      if(over) doSwap(+over.dataset.idx); else dragSrcIdx=null;
+      lastOver=null;
+    },{passive:true});
 
-    handle.addEventListener('touchcancel', () => {
-      if (touchGhost) { touchGhost.remove(); touchGhost = null; }
-      clearDragStyles(); dragSrcIdx = null; lastOverCard = null;
-    }, { passive: true });
+    h.addEventListener('touchcancel',()=>{
+      if(touchGhost){touchGhost.remove();touchGhost=null;}
+      clearStyles(); dragSrcIdx=null; lastOver=null;
+    },{passive:true});
   });
 
-  // Mouse drop targets
-  document.querySelectorAll('.day-card').forEach(card => {
-    card.addEventListener('dragover', e => {
-      e.preventDefault(); e.dataTransfer.dropEffect = 'move';
-      if (+card.dataset.idx !== dragSrcIdx) card.classList.add('drag-over');
-    });
-    card.addEventListener('dragleave', e => {
-      if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
-    });
-    card.addEventListener('drop', e => {
-      e.preventDefault(); card.classList.remove('drag-over');
-      doSwap(+card.dataset.idx);
-    });
+  // MOUSE DROP TARGETS
+  document.querySelectorAll('.day-card').forEach(card=>{
+    card.addEventListener('dragover',e=>{ e.preventDefault(); e.dataTransfer.dropEffect='move'; if(+card.dataset.idx!==dragSrcIdx) card.classList.add('drag-over'); });
+    card.addEventListener('dragleave',e=>{ if(!card.contains(e.relatedTarget)) card.classList.remove('drag-over'); });
+    card.addEventListener('drop',e=>{ e.preventDefault(); card.classList.remove('drag-over'); doSwap(+card.dataset.idx); });
   });
 
-  // Meal input auto-save
-  document.querySelectorAll('.meal-input').forEach(el => {
+  // MEAL INPUT
+  document.querySelectorAll('.meal-input').forEach(el=>{
     let timer;
-    el.addEventListener('input', () => {
-      const idx = +el.dataset.idx;
-      weekData[idx].meal = el.value;
+    el.addEventListener('input',()=>{
+      const idx=+el.dataset.idx; weekData[idx].meal=el.value;
       clearTimeout(timer);
-      timer = setTimeout(() => {
-        saveWeekData(currentMonday, weekData);
-        if (FIREBASE_READY) syncToFirebase();
-        const tick = document.getElementById(`tick-${idx}`);
-        if (tick) { tick.classList.add('show'); setTimeout(() => tick.classList.remove('show'), 2000); }
-      }, 600);
+      timer=setTimeout(()=>{
+        save(currentMonday,weekData);
+        if(FIREBASE_READY)syncFB();
+        const tick=document.getElementById(`tick-${idx}`);
+        if(tick){tick.classList.add('show');setTimeout(()=>tick.classList.remove('show'),2000);}
+      },600);
     });
   });
 
-  // Image upload
-  document.querySelectorAll('.file-input').forEach(input => {
-    input.addEventListener('change', e => handleImageUpload(e, +input.dataset.idx));
+  // IMAGE UPLOAD
+  document.querySelectorAll('.file-input').forEach(inp=>{
+    inp.addEventListener('change',e=>uploadImg(e,+inp.dataset.idx));
   });
-  document.querySelectorAll('.upload-overlay, .change-photo-btn').forEach(el => {
-    el.addEventListener('click', e => {
-      e.stopPropagation();
-      el.closest('.card-img-wrap').querySelector('.file-input').click();
-    });
+  document.querySelectorAll('.upload-overlay,.change-photo-btn').forEach(el=>{
+    el.addEventListener('click',e=>{ e.stopPropagation(); el.closest('.card-img-wrap').querySelector('.file-input').click(); });
   });
 }
 
-async function handleImageUpload(e, idx) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const wrap = document.querySelectorAll('.card-img-wrap')[idx];
-  const spinner = document.createElement('div');
-  spinner.className = 'spinner';
-  wrap.appendChild(spinner);
-  const fd = new FormData();
-  fd.append('file', file);
-  fd.append('upload_preset', 'madplan_unsigned');
-  fd.append('cloud_name', 'di5x780hh');
-  try {
-    const res  = await fetch('https://api.cloudinary.com/v1_1/di5x780hh/image/upload', { method:'POST', body:fd });
-    const data = await res.json();
-    if (data.secure_url) {
-      weekData[idx].image = data.secure_url;
-      saveWeekData(currentMonday, weekData);
-      if (FIREBASE_READY) syncToFirebase();
-      spinner.remove(); renderGrid(); toast('Billede gemt ✓');
-    } else { spinner.remove(); toast('Fejl ved upload – prøv igen'); }
-  } catch(err) { spinner.remove(); toast('Fejl ved upload – prøv igen'); console.error(err); }
+async function uploadImg(e,idx){
+  const file=e.target.files[0]; if(!file)return;
+  const wrap=document.querySelectorAll('.card-img-wrap')[idx];
+  const sp=document.createElement('div'); sp.className='spinner'; wrap.appendChild(sp);
+  const fd=new FormData();
+  fd.append('file',file); fd.append('upload_preset','madplan_unsigned'); fd.append('cloud_name','di5x780hh');
+  try{
+    const res=await fetch('https://api.cloudinary.com/v1_1/di5x780hh/image/upload',{method:'POST',body:fd});
+    const data=await res.json();
+    if(data.secure_url){ weekData[idx].image=data.secure_url; save(currentMonday,weekData); if(FIREBASE_READY)syncFB(); sp.remove(); renderGrid(); toast('Billede gemt ✓'); }
+    else{ sp.remove(); toast('Fejl ved upload'); }
+  }catch(err){ sp.remove(); toast('Fejl ved upload'); }
 }
 
-// ══════════════════════════════════════════════════
-//  WEEK NAVIGATION
-// ══════════════════════════════════════════════════
-document.getElementById('prevWeek').addEventListener('click', async () => {
-  currentMonday.setDate(currentMonday.getDate() - 7);
-  weekData = loadWeekData(currentMonday); render();
+// NAVIGATION
+document.getElementById('prevWeek').addEventListener('click',async()=>{
+  currentMonday.setDate(currentMonday.getDate()-7); weekData=load(currentMonday); render();
   await loadFromFirebase(currentMonday); startListener(currentMonday);
 });
-document.getElementById('nextWeek').addEventListener('click', async () => {
-  currentMonday.setDate(currentMonday.getDate() + 7);
-  weekData = loadWeekData(currentMonday); render();
+document.getElementById('nextWeek').addEventListener('click',async()=>{
+  currentMonday.setDate(currentMonday.getDate()+7); weekData=load(currentMonday); render();
   await loadFromFirebase(currentMonday); startListener(currentMonday);
 });
 
-// ══════════════════════════════════════════════════
-//  FIREBASE SYNC
-// ══════════════════════════════════════════════════
-function weekDocRef(m) { return window._firestore.doc(db, 'uger', m.toISOString().slice(0,10)); }
-async function loadFromFirebase(m) {
-  if (!FIREBASE_READY) return;
-  try {
-    const snap = await window._firestore.getDoc(weekDocRef(m));
-    if (snap.exists()) { weekData = snap.data().dage; renderGrid(); }
-  } catch(e) { console.warn('Firebase load fejl:', e); }
+// FIREBASE SYNC
+const docRef=m=>window._fs.doc(db,'uger',m.toISOString().slice(0,10));
+async function loadFromFirebase(m){
+  if(!FIREBASE_READY)return;
+  try{ const s=await window._fs.getDoc(docRef(m)); if(s.exists()){weekData=s.data().dage;renderGrid();} }catch(e){}
 }
-async function syncToFirebase() {
-  if (!FIREBASE_READY) return;
-  try { await window._firestore.setDoc(weekDocRef(currentMonday), { dage: weekData }); }
-  catch(e) { console.warn('Firebase gem fejl:', e); }
+async function syncFB(){
+  if(!FIREBASE_READY)return;
+  try{await window._fs.setDoc(docRef(currentMonday),{dage:weekData});}catch(e){}
 }
-let unsubscribe = null;
-function startListener(monday) {
-  if (!FIREBASE_READY) return;
-  if (unsubscribe) unsubscribe();
-  unsubscribe = window._firestore.onSnapshot(weekDocRef(monday), snap => {
-    if (snap.exists()) {
-      const newData = snap.data().dage;
-      if (JSON.stringify(newData) !== JSON.stringify(weekData)) {
-        weekData = newData; renderGrid();
-        toast('Siden er opdateret af et familiemedlem 🔄');
-      }
+let unsub=null;
+function startListener(m){
+  if(!FIREBASE_READY)return;
+  if(unsub)unsub();
+  unsub=window._fs.onSnapshot(docRef(m),snap=>{
+    if(snap.exists()){
+      const nd=snap.data().dage;
+      if(JSON.stringify(nd)!==JSON.stringify(weekData)){weekData=nd;renderGrid();toast('Opdateret af familiemedlem 🔄');}
     }
   });
 }
 
-// ══════════════════════════════════════════════════
-//  INIT
-// ══════════════════════════════════════════════════
 render();
 initFirebase();
 </script>
