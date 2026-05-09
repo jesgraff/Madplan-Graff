@@ -723,6 +723,120 @@ document.getElementById('resetBtn').addEventListener('click', function() {
 
 // ── START ──
 render();
+
+</script>
+
+<!-- Firebase – isolated so a network failure never breaks the UI -->
+
+<script>
+(function() {
+  // Dynamically load Firebase using classic script tags (not ES modules)
+  // This avoids the type=module crash on GitHub Pages / Safari PWA
+  var scripts = [
+    'https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js',
+    'https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js'
+  ];
+
+  var loaded = 0;
+
+  function onScriptLoad() {
+    loaded++;
+    if (loaded < scripts.length) return;
+    // Both scripts loaded — initialize Firebase
+    try {
+      var app = firebase.initializeApp({
+        apiKey: "AIzaSyAYpGKhXwYqw3Vh9NeWeiimPI8YNCjZiYAs",
+        authDomain: "madplan-graff.firebaseapp.com",
+        projectId: "madplan-graff",
+        storageBucket: "madplan-graff.firebasestorage.app",
+        messagingSenderId: "10854566370068",
+        appId: "1:10854566370068:web:dbbaf9daa86e3af9dc9729"
+      });
+
+      var db = firebase.firestore();
+
+      function docRef(monday) {
+        return db.collection('uger').doc(monday.toISOString().slice(0, 10));
+      }
+
+      // Load from Firebase and update UI
+      function fbLoad(monday) {
+        docRef(monday).get().then(function(snap) {
+          if (snap.exists) {
+            var data = snap.data().dage;
+            // Enforce correct day names
+            weekData = data.map(function(d, i) {
+              return { name: DAYS[i], meal: d.meal || '', image: d.image || '' };
+            });
+            renderGrid();
+          }
+        }).catch(function(e) { console.warn('FB load:', e); });
+      }
+
+      // Save to Firebase
+      window._fbSync = function() {
+        docRef(currentMonday).set({ dage: weekData }).catch(function(e) { console.warn('FB sync:', e); });
+      };
+
+      // Real-time listener — all family members see updates instantly
+      var unsub = null;
+      function startListener(monday) {
+        if (unsub) unsub();
+        unsub = docRef(monday).onSnapshot(function(snap) {
+          if (snap.exists) {
+            var nd = snap.data().dage;
+            var ndFixed = nd.map(function(d, i) {
+              return { name: DAYS[i], meal: d.meal || '', image: d.image || '' };
+            });
+            if (JSON.stringify(ndFixed) !== JSON.stringify(weekData)) {
+              weekData = ndFixed;
+              renderGrid();
+              showToast('Opdateret af familiemedlem \uD83D\uDD04');
+            }
+          }
+        }, function(e) { console.warn('FB listener:', e); });
+      }
+
+      // Hook into week navigation
+      var origPrev = document.getElementById('prevWeek').onclick;
+      var origNext = document.getElementById('nextWeek').onclick;
+      document.getElementById('prevWeek').addEventListener('click', function() {
+        setTimeout(function() { fbLoad(currentMonday); startListener(currentMonday); }, 50);
+      });
+      document.getElementById('nextWeek').addEventListener('click', function() {
+        setTimeout(function() { fbLoad(currentMonday); startListener(currentMonday); }, 50);
+      });
+
+      // Also sync on every save
+      var origSave = window.saveData;
+      window.saveData = function(m, data) {
+        origSave(m, data);
+        window._fbSync();
+      };
+
+      // Initial load
+      fbLoad(currentMonday);
+      startListener(currentMonday);
+
+      console.log('Firebase klar ✓');
+    } catch(e) {
+      console.warn('Firebase fejl:', e);
+    }
+  }
+
+  function onScriptError() {
+    console.warn('Firebase CDN ikke tilgængelig – bruger localStorage');
+  }
+
+  // Load scripts sequentially
+  scripts.forEach(function(src) {
+    var s = document.createElement('script');
+    s.src = src;
+    s.onload = onScriptLoad;
+    s.onerror = onScriptError;
+    document.head.appendChild(s);
+  });
+})();
 </script>
 
 </body>
