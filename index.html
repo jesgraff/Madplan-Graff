@@ -227,6 +227,31 @@ font-size: 0.65rem; color: #52b788; display: flex; align-items: center; gap: 4px
 margin-top: 6px; height: 14px; opacity: 0; transition: opacity 0.4s;
 }
 .save-tick.show { opacity: 1; }
+
+/* AI generate button */
+.ai-btn {
+display: flex; align-items: center; gap: 5px;
+margin-top: 6px;
+background: linear-gradient(135deg, #245235, #40916c);
+color: #fff; border: none; border-radius: 8px;
+padding: 5px 10px; font-size: 0.72rem; font-weight: 500;
+cursor: pointer; font-family: ‘DM Sans’, sans-serif;
+transition: opacity 0.2s, transform 0.15s;
+align-self: flex-start;
+}
+.ai-btn:hover { opacity: 0.85; transform: scale(1.03); }
+.ai-btn:disabled { opacity: 0.5; cursor: wait; }
+.ai-btn.loading::after {
+content: ‘’;
+display: inline-block;
+width: 10px; height: 10px;
+border: 2px solid rgba(255,255,255,0.4);
+border-top-color: #fff;
+border-radius: 50%;
+animation: spin 0.7s linear infinite;
+margin-left: 4px;
+}
+
 .save-tick::before {
 content: ‘’; width: 6px; height: 6px;
 background: #52b788; border-radius: 50%; display: inline-block;
@@ -720,6 +745,41 @@ document.getElementById('resetBtn').addEventListener('click', function() {
     renderGrid();
   }
 });
+
+
+// AI image generation
+function generateAiImage(idx) {
+  var meal = weekData[idx].meal;
+  if (!meal || meal.trim() === '') {
+    showToast('Skriv rettens navn f\u00f8rst');
+    return;
+  }
+  var btn = document.querySelector('.ai-btn[data-idx="' + idx + '"]');
+  if (btn) { btn.disabled = true; btn.classList.add('loading'); btn.textContent = 'Genererer...'; }
+
+  fetch('https://madplan-billede.jesgraff.workers.dev', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt: meal })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.image) {
+      weekData[idx].image = data.image;
+      saveData(currentMonday, weekData);
+      if (window._fbSync) window._fbSync();
+      renderGrid();
+      showToast('Billede genereret \u2713');
+    } else {
+      showToast('Fejl: ' + (data.error || 'Pr\u00f8v igen'));
+      if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024; Generer billede'; }
+    }
+  })
+  .catch(function(err) {
+    showToast('Fejl ved generering');
+    if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024; Generer billede'; }
+  });
+}
 
 // ── START ──
 render();
