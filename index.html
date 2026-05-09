@@ -492,9 +492,13 @@ function doSwap(targetIdx) {
   }
   var srcName = weekData[dragSrcIdx].name;
   var tgtName = weekData[targetIdx].name;
-  var tmp = weekData[dragSrcIdx];
-  weekData[dragSrcIdx] = weekData[targetIdx];
-  weekData[targetIdx] = tmp;
+  // Only swap meal and image — keep day names fixed in their positions
+  var tmpMeal  = weekData[dragSrcIdx].meal;
+  var tmpImage = weekData[dragSrcIdx].image;
+  weekData[dragSrcIdx].meal  = weekData[targetIdx].meal;
+  weekData[dragSrcIdx].image = weekData[targetIdx].image;
+  weekData[targetIdx].meal   = tmpMeal;
+  weekData[targetIdx].image  = tmpImage;
   saveData(currentMonday, weekData);
   toast(srcName + ' og ' + tgtName + ' byttet \u2713');
   dragSrcIdx = null;
