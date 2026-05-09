@@ -4,9 +4,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <title>Madplan – familien Graff</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -322,6 +319,9 @@ font-size: 1.1rem; text-align: center; padding: 12px;
     <div class="hint-item"><div class="hint-icon">&#10003;</div> Tekst gemmes automatisk</div>
     <div class="hint-item"><div class="hint-icon">&#128247;</div> Klik p&aring; billedet for at skifte</div>
     <div class="hint-item"><div class="hint-icon">&#128241;</div> Virker p&aring; iPad og mobil</div>
+  </div>
+  <div style="text-align:center;margin-top:16px;">
+    <button id="resetBtn" style="background:#c0392b;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:0.85rem;cursor:pointer;">&#128465; Nulstil ugens data</button>
   </div>
 </main>
 
@@ -702,6 +702,17 @@ document.getElementById('nextWeek').addEventListener('click', function() {
   currentMonday.setDate(currentMonday.getDate() + 7);
   weekData = loadData(currentMonday);
   render();
+});
+
+
+// Reset button
+document.getElementById('resetBtn').addEventListener('click', function() {
+  if (confirm('Nulstil alle data for denne uge? (mad og billeder slettes)')) {
+    var k = 'madplan_' + currentMonday.toISOString().slice(0, 10);
+    localStorage.removeItem(k);
+    weekData = loadData(currentMonday);
+    renderGrid();
+  }
 });
 
 // ── START ──
