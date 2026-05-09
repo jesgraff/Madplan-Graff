@@ -10,31 +10,55 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-–g900: #0f2419; –g800: #1a3a2a; –g700: #245235; –g600: #2d6a4f;
-–g500: #40916c; –g400: #52b788; –g300: #74c69d; –g200: #95d5b2;
-–g100: #d8f3dc; –g050: #f0faf2; –cream: #faf8f3; –white: #ffffff;
-–text: #1a2e22; –muted: #5a7a65;
+–g800: #1a3a2a;
+–g700: #245235;
+–g600: #2d6a4f;
+–g500: #40916c;
+–g400: #52b788;
+–g300: #74c69d;
+–g200: #95d5b2;
+–g100: #d8f3dc;
+–g050: #f0faf2;
+–cream: #faf8f3;
+–white: #ffffff;
+–text: #1a2e22;
+–muted: #5a7a65;
 –shadow-sm: 0 1px 4px rgba(15,36,25,0.08);
 –shadow-md: 0 4px 20px rgba(15,36,25,0.12);
 –shadow-lg: 0 12px 40px rgba(15,36,25,0.18);
-–radius: 16px; –radius-sm: 10px;
+–radius: 16px;
+–radius-sm: 10px;
 }
 
 html { scroll-behavior: smooth; }
-body { font-family: ‘DM Sans’, sans-serif; background: var(–cream); color: var(–text); min-height: 100vh; overflow-x: hidden; }
 
-/* HEADER */
+body {
+font-family: ‘DM Sans’, sans-serif;
+background: var(–cream);
+color: var(–text);
+min-height: 100vh;
+overflow-x: hidden;
+}
+
+/* ── HEADER ── */
 .header {
-background: linear-gradient(135deg, var(–g800) 0%, var(–g700) 60%, var(–g600) 100%);
-padding: 0 32px; position: relative; overflow: hidden; box-shadow: var(–shadow-lg);
+background: linear-gradient(135deg, #1a3a2a 0%, #245235 60%, #2d6a4f 100%);
+padding: 0 32px;
+position: relative;
+overflow: hidden;
+box-shadow: 0 12px 40px rgba(15,36,25,0.18);
 }
 .header::before {
-content: ‘’; position: absolute; top: -80px; right: -80px; width: 280px; height: 280px;
+content: ‘’;
+position: absolute; top: -80px; right: -80px;
+width: 280px; height: 280px;
 background: radial-gradient(circle, rgba(82,183,136,0.15) 0%, transparent 70%);
 border-radius: 50%; pointer-events: none;
 }
 .header::after {
-content: ‘’; position: absolute; bottom: -60px; left: 20%; width: 200px; height: 200px;
+content: ‘’;
+position: absolute; bottom: -60px; left: 20%;
+width: 200px; height: 200px;
 background: radial-gradient(circle, rgba(149,213,178,0.1) 0%, transparent 70%);
 border-radius: 50%; pointer-events: none;
 }
@@ -43,133 +67,182 @@ max-width: 1240px; margin: 0 auto;
 display: flex; align-items: center; justify-content: space-between;
 padding: 24px 0; position: relative; z-index: 1; gap: 16px;
 }
-.site-title { font-family: ‘Playfair Display’, serif; font-size: clamp(1.3rem, 3vw, 2rem); color: var(–white); line-height: 1.15; }
-.site-title em { color: var(–g200); font-style: italic; }
+.site-title {
+font-family: ‘Playfair Display’, serif;
+font-size: clamp(1.3rem, 3vw, 2rem);
+color: #ffffff; line-height: 1.15;
+}
+.site-title em { color: #95d5b2; font-style: italic; }
 .week-meta { text-align: center; flex-shrink: 0; }
-.week-num { font-family: ‘Playfair Display’, serif; font-size: 1rem; color: var(–g200); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.week-num {
+font-family: ‘Playfair Display’, serif;
+font-size: 1rem; color: #95d5b2;
+font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+}
 .week-range { font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 3px; }
 .nav-btn {
-background: rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.2);
-border-radius: var(–radius-sm); color: var(–white); padding: 10px 20px;
+background: rgba(255,255,255,0.1);
+border: 1.5px solid rgba(255,255,255,0.2);
+border-radius: 10px; color: #ffffff; padding: 10px 20px;
 font-family: ‘DM Sans’, sans-serif; font-size: 0.85rem; font-weight: 500;
 cursor: pointer; display: flex; align-items: center; gap: 8px;
-transition: background 0.2s, border-color 0.2s, transform 0.15s;
+transition: background 0.2s, transform 0.15s;
 white-space: nowrap; flex-shrink: 0;
 }
-.nav-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.35); transform: scale(1.02); }
+.nav-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.02); }
 .nav-btn:active { transform: scale(0.98); }
 .leaf-deco { position: absolute; pointer-events: none; opacity: 0.07; }
 
-/* MAIN */
+/* ── MAIN ── */
 .main { max-width: 1240px; margin: 0 auto; padding: 28px 24px 60px; }
 
-/* HINT BAR */
+/* ── HINT BAR ── */
 .hint-bar {
 display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
-padding: 10px 16px; background: var(–g050); border: 1px solid var(–g100);
-border-radius: var(–radius-sm); font-size: 0.78rem; color: var(–muted);
+padding: 10px 16px; background: #f0faf2; border: 1px solid #d8f3dc;
+border-radius: 10px; font-size: 0.78rem; color: #5a7a65; margin-top: 20px;
 }
 .hint-item { display: flex; align-items: center; gap: 6px; }
-.hint-icon { width: 24px; height: 24px; background: var(–g100); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.hint-icon {
+width: 24px; height: 24px; background: #d8f3dc;
+border-radius: 6px; display: flex; align-items: center; justify-content: center;
+font-size: 0.85rem; flex-shrink: 0;
+}
 
-/* DAYS GRID */
-.days-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 14px; margin-bottom: 20px; }
+/* ── DAYS GRID ── */
+.days-grid {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 14px;
+}
 
-/* DAY CARD */
+/* ── DAY CARD ── */
 .day-card {
-background: var(–white); border-radius: var(–radius); border: 1.5px solid var(–g100);
-box-shadow: var(–shadow-sm); overflow: hidden; display: flex; flex-direction: column;
+background: #ffffff; border-radius: 16px;
+border: 1.5px solid #d8f3dc; box-shadow: 0 1px 4px rgba(15,36,25,0.08);
+overflow: hidden; display: flex; flex-direction: column;
 transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s, opacity 0.2s;
-position: relative; animation: fadeUp 0.4s ease both;
+position: relative;
+animation: fadeUp 0.4s ease both;
 user-select: none; -webkit-user-select: none;
 }
 .day-card:nth-child(1){animation-delay:.05s} .day-card:nth-child(2){animation-delay:.10s}
 .day-card:nth-child(3){animation-delay:.15s} .day-card:nth-child(4){animation-delay:.20s}
 .day-card:nth-child(5){animation-delay:.25s} .day-card:nth-child(6){animation-delay:.30s}
 .day-card:nth-child(7){animation-delay:.35s}
-@keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-
-.day-card:hover { box-shadow: var(–shadow-md); transform: translateY(-2px); border-color: var(–g300); }
-.day-card.today { border-color: var(–g400); box-shadow: 0 0 0 3px rgba(82,183,136,0.15), var(–shadow-md); }
-.day-card.dragging { opacity: 0.4; transform: scale(0.97); }
-.day-card.drag-over { border-color: var(–g400) !important; background: var(–g050); transform: translateY(-4px) scale(1.02) !important; box-shadow: var(–shadow-lg) !important; }
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(12px); }
+to   { opacity: 1; transform: translateY(0); }
+}
+.day-card:hover { box-shadow: 0 4px 20px rgba(15,36,25,0.12); transform: translateY(-2px); border-color: #74c69d; }
+.day-card.today { border-color: #52b788; box-shadow: 0 0 0 3px rgba(82,183,136,0.15), 0 4px 20px rgba(15,36,25,0.12); }
+.day-card.dragging { opacity: 0.4; transform: scale(0.97) !important; }
+.day-card.drag-over { border-color: #52b788 !important; background: #f0faf2; transform: translateY(-4px) scale(1.02) !important; box-shadow: 0 12px 40px rgba(15,36,25,0.18) !important; }
 
 .today-badge {
-position: absolute; top: 9px; right: 9px; background: var(–g400); color: var(–white);
+position: absolute; top: 9px; right: 9px;
+background: #52b788; color: #ffffff;
 font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
 padding: 3px 9px; border-radius: 20px; z-index: 3; pointer-events: none;
 }
 
-/* DRAG HANDLE */
+/* ── DRAG HANDLE ──
+touch-action:none is critical — tells the browser “don’t scroll on this element”
+so touchmove fires reliably on Safari/iPad.
+opacity is always 0.5 (visible), not hidden, so users know it exists. */
 .drag-handle {
 position: absolute; top: 9px; left: 9px;
 width: 28px; height: 28px;
-display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+display: flex; flex-direction: column;
+align-items: center; justify-content: center; gap: 4px;
 cursor: grab; z-index: 10; border-radius: 6px;
-background: rgba(45,106,79,0.08);
-touch-action: none; -webkit-touch-callout: none;
-opacity: 0; transition: opacity 0.2s, background 0.15s;
+background: rgba(45,106,79,0.1);
+touch-action: none;
+-webkit-touch-callout: none;
+opacity: 0.45;
+transition: opacity 0.2s, background 0.15s;
 }
-.day-card:hover .drag-handle { opacity: 0.7; }
-@media (hover: none) { .drag-handle { opacity: 0.55 !important; } }
-.drag-handle:hover { background: rgba(45,106,79,0.15); opacity: 1 !important; cursor: grabbing; }
-.drag-handle span { display: block; width: 14px; height: 2px; background: var(–g700); border-radius: 2px; pointer-events: none; }
+.drag-handle:hover { background: rgba(45,106,79,0.2); opacity: 1; cursor: grabbing; }
+.drag-handle span {
+display: block; width: 14px; height: 2px;
+background: #245235; border-radius: 2px; pointer-events: none;
+}
 
-/* CARD HEAD */
+/* ── CARD HEAD ── */
 .card-head {
-background: linear-gradient(180deg, var(–g050) 0%, rgba(240,250,242,0) 100%);
-padding: 12px 12px 10px 32px; border-bottom: 1px solid var(–g100); flex-shrink: 0;
+background: linear-gradient(180deg, #f0faf2 0%, rgba(240,250,242,0) 100%);
+padding: 12px 12px 10px 32px;
+border-bottom: 1px solid #d8f3dc; flex-shrink: 0;
 pointer-events: none;
 }
-.card-dayname { font-family: ‘Playfair Display’, serif; font-size: 1rem; color: var(–g800); line-height: 1; }
-.card-date { font-size: 0.72rem; color: var(–muted); margin-top: 3px; }
+.card-dayname {
+font-family: ‘Playfair Display’, serif;
+font-size: 1rem; color: #1a3a2a; line-height: 1;
+}
+.card-date { font-size: 0.72rem; color: #5a7a65; margin-top: 3px; }
 
-/* IMAGE */
-.card-img-wrap { width: 100%; height: 120px; position: relative; overflow: hidden; flex-shrink: 0; background: var(–g050); }
-.card-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s; pointer-events: none; }
+/* ── IMAGE ── */
+.card-img-wrap {
+width: 100%; height: 120px;
+position: relative; overflow: hidden; flex-shrink: 0; background: #f0faf2;
+}
+.card-img-wrap img {
+width: 100%; height: 100%; object-fit: cover;
+display: block; transition: transform 0.3s; pointer-events: none;
+}
 .day-card:hover .card-img-wrap img { transform: scale(1.04); }
 .upload-overlay {
 position: absolute; inset: 0; display: flex; flex-direction: column;
 align-items: center; justify-content: center; gap: 5px;
-background: var(–g050); cursor: pointer; transition: background 0.2s;
+background: #f0faf2; cursor: pointer; transition: background 0.2s;
 }
-.upload-overlay:hover { background: var(–g100); }
+.upload-overlay:hover { background: #d8f3dc; }
 .upload-overlay .u-icon { font-size: 1.6rem; opacity: 0.4; pointer-events: none; }
-.upload-overlay .u-text { font-size: 0.67rem; color: var(–muted); pointer-events: none; }
+.upload-overlay .u-text { font-size: 0.67rem; color: #5a7a65; pointer-events: none; }
 .change-photo-btn {
-position: absolute; inset: 0; background: rgba(15,36,25,0.55); color: var(–white);
-border: none; cursor: pointer; font-family: ‘DM Sans’, sans-serif; font-size: 0.75rem; font-weight: 500;
+position: absolute; inset: 0; background: rgba(15,36,25,0.55); color: #ffffff;
+border: none; cursor: pointer;
+font-family: ‘DM Sans’, sans-serif; font-size: 0.75rem; font-weight: 500;
 display: flex; align-items: center; justify-content: center; gap: 6px;
 opacity: 0; transition: opacity 0.2s;
 }
 .card-img-wrap:hover .change-photo-btn { opacity: 1; }
 .file-input { display: none; }
 
-/* CARD BODY */
+/* ── CARD BODY ── */
 .card-body { padding: 10px 12px 12px; flex: 1; display: flex; flex-direction: column; }
 .meal-input {
-width: 100%; border: none; outline: none; font-family: ‘DM Sans’, sans-serif;
-font-size: 0.85rem; color: var(–text); background: transparent; resize: none; line-height: 1.45;
+width: 100%; border: none; outline: none;
+font-family: ‘DM Sans’, sans-serif; font-size: 0.85rem;
+color: #1a2e22; background: transparent; resize: none; line-height: 1.45;
 -webkit-user-drag: none; user-select: text; -webkit-user-select: text; cursor: text;
 }
 .meal-input::placeholder { color: #bbb; font-style: italic; }
-.meal-input:focus { background: var(–g050); border-radius: 8px; padding: 6px 8px; margin: -6px -8px; width: calc(100% + 16px); }
+.meal-input:focus {
+background: #f0faf2; border-radius: 8px;
+padding: 6px 8px; margin: -6px -8px; width: calc(100% + 16px);
+}
 .save-tick {
-font-size: 0.65rem; color: var(–g400); display: flex; align-items: center; gap: 4px;
+font-size: 0.65rem; color: #52b788; display: flex; align-items: center; gap: 4px;
 margin-top: 6px; height: 14px; opacity: 0; transition: opacity 0.4s;
 }
 .save-tick.show { opacity: 1; }
-.save-tick::before { content: ‘’; width: 6px; height: 6px; background: var(–g400); border-radius: 50%; display: inline-block; }
+.save-tick::before {
+content: ‘’; width: 6px; height: 6px;
+background: #52b788; border-radius: 50%; display: inline-block;
+}
 
-/* MOBILE */
+/* ── MOBILE ── */
 @media (max-width: 860px) {
 .days-grid { grid-template-columns: 1fr; gap: 16px; }
 .day-card { flex-direction: row; min-height: 100px; }
 .card-head {
-width: 110px; flex-shrink: 0; border-bottom: none; border-right: 1px solid var(–g100);
-padding: 14px 10px 14px 36px; display: flex; flex-direction: column; justify-content: center;
+width: 110px; flex-shrink: 0;
+border-bottom: none; border-right: 1px solid #d8f3dc;
+padding: 14px 10px 14px 36px;
+display: flex; flex-direction: column; justify-content: center;
 }
-.drag-handle { top: 50%; transform: translateY(-50%); left: 8px; }
+.drag-handle { top: 50%; transform: translateY(-50%); left: 8px; opacity: 0.6; }
 .card-dayname { font-size: 0.95rem; }
 .card-img-wrap { width: 100px; flex-shrink: 0; height: 100px; }
 .card-body { padding: 10px 14px; justify-content: center; }
@@ -178,46 +251,44 @@ padding: 14px 10px 14px 36px; display: flex; flex-direction: column; justify-con
 .site-title { font-size: 1.3rem; text-align: center; }
 }
 
-/* SPINNER */
-.spinner { position: absolute; inset: 0; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; z-index: 10; }
-.spinner::after { content: ‘’; width: 26px; height: 26px; border: 3px solid var(–g100); border-top-color: var(–g400); border-radius: 50%; animation: spin 0.7s linear infinite; }
+/* ── SPINNER ── */
+.spinner {
+position: absolute; inset: 0; background: rgba(255,255,255,0.85);
+display: flex; align-items: center; justify-content: center; z-index: 10;
+}
+.spinner::after {
+content: ‘’; width: 26px; height: 26px;
+border: 3px solid #d8f3dc; border-top-color: #52b788;
+border-radius: 50%; animation: spin 0.7s linear infinite;
+}
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* TOAST */
+/* ── TOAST ── */
 #toast {
 position: fixed; bottom: 28px; left: 50%;
 transform: translateX(-50%) translateY(20px);
-background: var(–g800); color: var(–white);
-padding: 11px 22px; border-radius: 40px; font-size: 0.82rem; font-weight: 500;
-opacity: 0; pointer-events: none; transition: opacity 0.3s, transform 0.3s; z-index: 9999; white-space: nowrap;
+background: #1a3a2a; color: #ffffff;
+padding: 11px 22px; border-radius: 40px;
+font-size: 0.82rem; font-weight: 500;
+opacity: 0; pointer-events: none;
+transition: opacity 0.3s, transform 0.3s; z-index: 9999; white-space: nowrap;
 }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-/* TOUCH GHOST */
+/* ── TOUCH GHOST (floating card while dragging on iPad) ── */
 .touch-ghost {
-position: fixed; pointer-events: none; z-index: 9998; opacity: 0.85;
-border-radius: var(–radius); box-shadow: 0 20px 60px rgba(15,36,25,0.4);
-transform: rotate(2deg) scale(1.05); overflow: hidden;
-background: linear-gradient(135deg, var(–g700), var(–g500));
+position: fixed; pointer-events: none; z-index: 9998; opacity: 0.9;
+border-radius: 16px; box-shadow: 0 20px 60px rgba(15,36,25,0.4);
+transform: rotate(2deg) scale(1.05);
+background: linear-gradient(135deg, #245235, #40916c);
 display: flex; align-items: center; justify-content: center;
-color: #fff; font-family: ‘Playfair Display’, serif; font-size: 1.1rem; text-align: center; padding: 12px;
+color: #ffffff; font-family: ‘Playfair Display’, serif;
+font-size: 1.1rem; text-align: center; padding: 12px;
 }
-
-/* SETUP BANNER */
-.setup-banner {
-background: linear-gradient(135deg, var(–g800), var(–g700)); color: var(–white);
-padding: 14px 20px; text-align: center; font-size: 0.82rem;
-display: flex; align-items: center; justify-content: center; gap: 10px;
-}
-.setup-banner strong { color: var(–g200); }
 </style>
 
 </head>
 <body>
-
-<div class="setup-banner" id="setupBanner">
-  ⚠️ <strong>Trin 2 mangler:</strong> Firebase er ikke sat op endnu. Data gemmes kun lokalt i din browser indtil videre.
-</div>
 
 <header class="header">
   <svg class="leaf-deco" style="bottom:-20px;left:60px;width:120px;" viewBox="0 0 100 120" fill="none">
@@ -229,308 +300,405 @@ display: flex; align-items: center; justify-content: center; gap: 10px;
     <path d="M50 110 Q30 80 20 50 Q15 30 35 20 Q55 30 60 55 Q62 80 50 110Z" fill="#74c69d"/>
   </svg>
   <div class="header-inner">
-    <button class="nav-btn" id="prevWeek">← Forrige uge</button>
+    <button class="nav-btn" id="prevWeek">&#8592; Forrige uge</button>
     <div>
       <div class="site-title">Madplan for <em>familien Graff</em></div>
       <div class="week-meta" style="margin-top:6px;">
-        <div class="week-num" id="weekNum">Uge –</div>
-        <div class="week-range" id="weekRange">– til –</div>
+        <div class="week-num" id="weekNum">Uge &ndash;</div>
+        <div class="week-range" id="weekRange">&ndash; til &ndash;</div>
       </div>
     </div>
-    <button class="nav-btn" id="nextWeek">Næste uge →</button>
+    <button class="nav-btn" id="nextWeek">N&aelig;ste uge &#8594;</button>
   </div>
 </header>
 
 <main class="main">
   <div class="days-grid" id="daysGrid"></div>
   <div class="hint-bar">
-    <div class="hint-item"><div class="hint-icon">⠿</div> Træk i håndtaget for at bytte dage</div>
-    <div class="hint-item"><div class="hint-icon">✓</div> Tekst gemmes automatisk</div>
-    <div class="hint-item"><div class="hint-icon">📷</div> Klik på billedet for at skifte</div>
-    <div class="hint-item"><div class="hint-icon">📱</div> Virker på iPad og mobil</div>
+    <div class="hint-item"><div class="hint-icon">&#8285;</div> Tr&aelig;k i h&aring;ndtaget for at bytte dage</div>
+    <div class="hint-item"><div class="hint-icon">&#10003;</div> Tekst gemmes automatisk</div>
+    <div class="hint-item"><div class="hint-icon">&#128247;</div> Klik p&aring; billedet for at skifte</div>
+    <div class="hint-item"><div class="hint-icon">&#128241;</div> Virker p&aring; iPad og mobil</div>
   </div>
 </main>
+
 <div id="toast"></div>
 
-<script type="module">
-// FIREBASE
-let db = null, FIREBASE_READY = false;
-async function initFirebase() {
-  try {
-    const { initializeApp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js");
-    const { getFirestore, doc, setDoc, getDoc, onSnapshot } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
-    const app = initializeApp({
-      apiKey: "AIzaSyAYpGKhXwYqw3Vh9NeWeiimPI8YNCjZiYAs",
-      authDomain: "madplan-graff.firebaseapp.com",
-      projectId: "madplan-graff",
-      storageBucket: "madplan-graff.firebasestorage.app",
-      messagingSenderId: "10854566370068",
-      appId: "1:10854566370068:web:dbbaf9daa86e3af9dc9729"
-    });
-    db = getFirestore(app);
-    FIREBASE_READY = true;
-    window._fs = { doc, setDoc, getDoc, onSnapshot };
-    document.getElementById('setupBanner').style.display = 'none';
-    await loadFromFirebase(currentMonday);
-    startListener(currentMonday);
-  } catch(e) { console.warn('Firebase fejl:', e); }
-}
+<script>
+'use strict';
 
-// HELPERS
-const DA_DAYS   = ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'];
-const DA_MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+// ── CONSTANTS ──
+var DAYS   = ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','L\u00f8rdag','S\u00f8ndag'];
+var MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+
+// ── DATE HELPERS ──
 function getMonday(d) {
-  const dt = new Date(d), day = dt.getDay();
-  dt.setDate(dt.getDate() + (day===0 ? -6 : 1-day)); dt.setHours(0,0,0,0); return dt;
+  var dt = new Date(d);
+  var day = dt.getDay();
+  dt.setDate(dt.getDate() + (day === 0 ? -6 : 1 - day));
+  dt.setHours(0, 0, 0, 0);
+  return dt;
 }
 function getWeekNum(d) {
-  const u = new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
-  u.setUTCDate(u.getUTCDate()+4-(u.getUTCDay()||7));
-  return Math.ceil((((u-new Date(Date.UTC(u.getUTCFullYear(),0,1)))/86400000)+1)/7);
+  var u = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  u.setUTCDate(u.getUTCDate() + 4 - (u.getUTCDay() || 7));
+  var y = new Date(Date.UTC(u.getUTCFullYear(), 0, 1));
+  return Math.ceil((((u - y) / 86400000) + 1) / 7);
 }
-function fmt(d) { return `${d.getDate()}. ${DA_MONTHS[d.getMonth()]}`; }
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg; el.classList.add('show');
-  clearTimeout(el._t); el._t = setTimeout(()=>el.classList.remove('show'),2400);
-}
-
-// STATE
-let currentMonday = getMonday(new Date());
-const key = m => `madplan_${m.toISOString().slice(0,10)}`;
-function load(m) { const r=localStorage.getItem(key(m)); return r?JSON.parse(r):DA_DAYS.map(name=>({name,meal:'',image:''})); }
-function save(m,data) { localStorage.setItem(key(m),JSON.stringify(data)); }
-let weekData = load(currentMonday);
-
-// RENDER
-function dates(monday) {
-  return Array.from({length:7},(_,i)=>{ const d=new Date(monday); d.setDate(monday.getDate()+i); return d; });
-}
+function fmtDate(d) { return d.getDate() + '. ' + MONTHS[d.getMonth()]; }
 function isToday(d) {
-  const t=new Date();
-  return d.getDate()===t.getDate()&&d.getMonth()===t.getMonth()&&d.getFullYear()===t.getFullYear();
+  var t = new Date();
+  return d.getDate() === t.getDate() && d.getMonth() === t.getMonth() && d.getFullYear() === t.getFullYear();
 }
+function weekDates(monday) {
+  return Array.from({length: 7}, function(_, i) {
+    var d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    return d;
+  });
+}
+
+// ── TOAST ──
+function toast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(el._t);
+  el._t = setTimeout(function() { el.classList.remove('show'); }, 2400);
+}
+
+// ── LOCAL STORAGE ──
+function storageKey(m) { return 'madplan_' + m.toISOString().slice(0, 10); }
+function loadData(m) {
+  try {
+    var raw = localStorage.getItem(storageKey(m));
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return DAYS.map(function(name) { return {name: name, meal: '', image: ''}; });
+}
+function saveData(m, data) {
+  try { localStorage.setItem(storageKey(m), JSON.stringify(data)); } catch(e) {}
+}
+
+// ── STATE ──
+var currentMonday = getMonday(new Date());
+var weekData = loadData(currentMonday);
+
+// ── RENDER HEADER ──
 function renderHeader() {
-  const sun=new Date(currentMonday); sun.setDate(currentMonday.getDate()+6);
-  document.getElementById('weekNum').textContent=`Uge ${getWeekNum(currentMonday)}`;
-  document.getElementById('weekRange').textContent=`${fmt(currentMonday)} – ${fmt(sun)} ${sun.getFullYear()}`;
+  var sun = new Date(currentMonday);
+  sun.setDate(currentMonday.getDate() + 6);
+  document.getElementById('weekNum').textContent  = 'Uge ' + getWeekNum(currentMonday);
+  document.getElementById('weekRange').textContent = fmtDate(currentMonday) + ' \u2013 ' + fmtDate(sun) + ' ' + sun.getFullYear();
 }
+
+// ── RENDER GRID ──
 function renderGrid() {
-  const grid=document.getElementById('daysGrid');
-  const dd=dates(currentMonday);
-  grid.innerHTML='';
-  weekData.forEach((day,idx)=>{
-    const today=isToday(dd[idx]);
-    const card=document.createElement('div');
-    card.className='day-card'+(today?' today':'');
-    card.dataset.idx=idx;
+  var grid = document.getElementById('daysGrid');
+  var dd = weekDates(currentMonday);
+  grid.innerHTML = '';
 
-    // DRAG HANDLE
-    const h=document.createElement('div');
-    h.className='drag-handle';
-    h.setAttribute('draggable','true');
-    h.dataset.idx=idx;
-    h.title='Træk for at bytte dag';
-    h.innerHTML='<span></span><span></span><span></span>';
-    card.appendChild(h);
+  weekData.forEach(function(day, idx) {
+    var card = document.createElement('div');
+    card.className = 'day-card' + (isToday(dd[idx]) ? ' today' : '');
+    card.dataset.idx = String(idx);
 
-    if(today){
-      const b=document.createElement('div');
-      b.className='today-badge'; b.textContent='I dag'; card.appendChild(b);
+    // Drag handle — 3 horizontal lines
+    var handle = document.createElement('div');
+    handle.className = 'drag-handle';
+    handle.setAttribute('draggable', 'true');
+    handle.dataset.idx = String(idx);
+    handle.title = 'Tr\u00e6k for at bytte dag';
+    handle.innerHTML = '<span></span><span></span><span></span>';
+    card.appendChild(handle);
+
+    // Today badge
+    if (isToday(dd[idx])) {
+      var badge = document.createElement('div');
+      badge.className = 'today-badge';
+      badge.textContent = 'I dag';
+      card.appendChild(badge);
     }
 
-    // HEAD
-    const head=document.createElement('div');
-    head.className='card-head';
-    head.innerHTML=`<div class="card-dayname">${day.name}</div><div class="card-date">${fmt(dd[idx])}</div>`;
+    // Card head
+    var head = document.createElement('div');
+    head.className = 'card-head';
+    head.innerHTML = '<div class="card-dayname">' + day.name + '</div><div class="card-date">' + fmtDate(dd[idx]) + '</div>';
     card.appendChild(head);
 
-    // IMAGE
-    const iw=document.createElement('div');
-    iw.className='card-img-wrap'; iw.dataset.idx=idx;
-    if(day.image){
-      iw.innerHTML=`<img src="${day.image}" alt=""><button class="change-photo-btn" data-idx="${idx}">📷 Skift billede</button><input type="file" class="file-input" accept="image/*" data-idx="${idx}">`;
+    // Image wrap
+    var iw = document.createElement('div');
+    iw.className = 'card-img-wrap';
+    iw.dataset.idx = String(idx);
+    if (day.image) {
+      iw.innerHTML =
+        '<img src="' + day.image + '" alt="">' +
+        '<button class="change-photo-btn" data-idx="' + idx + '">\uD83D\uDCF7 Skift billede</button>' +
+        '<input type="file" class="file-input" accept="image/*" data-idx="' + idx + '">';
     } else {
-      iw.innerHTML=`<div class="upload-overlay" data-idx="${idx}"><div class="u-icon">🍽️</div><div class="u-text">Klik for billede</div></div><input type="file" class="file-input" accept="image/*" data-idx="${idx}">`;
+      iw.innerHTML =
+        '<div class="upload-overlay" data-idx="' + idx + '">' +
+          '<div class="u-icon">\uD83C\uDF7D\uFE0F</div>' +
+          '<div class="u-text">Klik for billede</div>' +
+        '</div>' +
+        '<input type="file" class="file-input" accept="image/*" data-idx="' + idx + '">';
     }
     card.appendChild(iw);
 
-    // BODY
-    const body=document.createElement('div');
-    body.className='card-body';
-    const ta=document.createElement('textarea');
-    ta.className='meal-input'; ta.dataset.idx=idx;
-    ta.placeholder='Hvad spiser vi?'; ta.rows=2; ta.value=day.meal;
-    ta.addEventListener('mousedown',e=>e.stopPropagation());
-    ta.addEventListener('touchstart',e=>e.stopPropagation(),{passive:true});
+    // Card body
+    var body = document.createElement('div');
+    body.className = 'card-body';
+
+    var ta = document.createElement('textarea');
+    ta.className = 'meal-input';
+    ta.dataset.idx = String(idx);
+    ta.placeholder = 'Hvad spiser vi?';
+    ta.rows = 2;
+    ta.value = day.meal || '';
+    // Stop propagation so typing doesn't trigger drag
+    ta.addEventListener('mousedown', function(e) { e.stopPropagation(); });
+    ta.addEventListener('touchstart', function(e) { e.stopPropagation(); }, {passive: true});
     body.appendChild(ta);
-    const tick=document.createElement('div');
-    tick.className='save-tick'; tick.id=`tick-${idx}`; tick.textContent='Gemt';
+
+    var tick = document.createElement('div');
+    tick.className = 'save-tick';
+    tick.id = 'tick-' + idx;
+    tick.textContent = 'Gemt';
     body.appendChild(tick);
+
     card.appendChild(body);
     grid.appendChild(card);
   });
+
   attachEvents();
 }
-function render(){ renderHeader(); renderGrid(); }
 
-// DRAG & DROP
-let dragSrcIdx=null, touchGhost=null, touchOffX=0, touchOffY=0, lastOver=null;
-
-function doSwap(tgt){
-  if(dragSrcIdx===null||dragSrcIdx===tgt){dragSrcIdx=null;return;}
-  const sn=weekData[dragSrcIdx].name, tn=weekData[tgt].name;
-  [weekData[dragSrcIdx],weekData[tgt]]=[weekData[tgt],weekData[dragSrcIdx]];
-  save(currentMonday,weekData);
-  if(FIREBASE_READY)syncFB();
-  toast(`${sn} og ${tn} byttet ✓`);
-  dragSrcIdx=null; renderGrid();
-}
-function clearStyles(){ document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('dragging','drag-over')); }
-function cardAt(x,y){
-  if(touchGhost) touchGhost.style.visibility='hidden';
-  const el=document.elementFromPoint(x,y);
-  if(touchGhost) touchGhost.style.visibility='';
-  return el?el.closest('.day-card'):null;
+function render() {
+  renderHeader();
+  renderGrid();
 }
 
-function attachEvents(){
-  document.querySelectorAll('.drag-handle').forEach(h=>{
-    // MOUSE
-    h.addEventListener('dragstart',e=>{
-      dragSrcIdx=+h.dataset.idx;
-      e.dataTransfer.effectAllowed='move';
-      e.dataTransfer.setData('text/plain',String(dragSrcIdx));
-      requestAnimationFrame(()=>h.closest('.day-card').classList.add('dragging'));
+// ── DRAG & DROP ──
+var dragSrcIdx  = null;
+var touchGhost  = null;
+var touchOffX   = 0;
+var touchOffY   = 0;
+var lastOverCard = null;
+
+function doSwap(targetIdx) {
+  if (dragSrcIdx === null || dragSrcIdx === targetIdx) {
+    dragSrcIdx = null;
+    return;
+  }
+  var srcName = weekData[dragSrcIdx].name;
+  var tgtName = weekData[targetIdx].name;
+  var tmp = weekData[dragSrcIdx];
+  weekData[dragSrcIdx] = weekData[targetIdx];
+  weekData[targetIdx] = tmp;
+  saveData(currentMonday, weekData);
+  toast(srcName + ' og ' + tgtName + ' byttet \u2713');
+  dragSrcIdx = null;
+  renderGrid();
+}
+
+function clearDragStyles() {
+  document.querySelectorAll('.day-card').forEach(function(c) {
+    c.classList.remove('dragging', 'drag-over');
+  });
+}
+
+// Find card underneath touch point (hides ghost temporarily so it doesn't interfere)
+function cardAtPoint(x, y) {
+  if (touchGhost) touchGhost.style.visibility = 'hidden';
+  var el = document.elementFromPoint(x, y);
+  if (touchGhost) touchGhost.style.visibility = '';
+  return el ? el.closest('.day-card') : null;
+}
+
+function attachEvents() {
+
+  // ── Drag handles ──
+  document.querySelectorAll('.drag-handle').forEach(function(handle) {
+
+    // MOUSE: dragstart
+    handle.addEventListener('dragstart', function(e) {
+      dragSrcIdx = parseInt(handle.dataset.idx, 10);
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', String(dragSrcIdx));
+      requestAnimationFrame(function() {
+        handle.closest('.day-card').classList.add('dragging');
+      });
     });
-    h.addEventListener('dragend',()=>{ clearStyles(); dragSrcIdx=null; });
 
-    // TOUCH start – passive OK, just records start
-    h.addEventListener('touchstart',e=>{
-      const t=e.touches[0];
-      dragSrcIdx=+h.dataset.idx;
-      const card=h.closest('.day-card'), r=card.getBoundingClientRect();
-      touchOffX=t.clientX-r.left; touchOffY=t.clientY-r.top;
-      lastOver=null; card.classList.add('dragging');
-      const g=document.createElement('div');
-      g.className='touch-ghost';
-      g.style.cssText=`width:${r.width}px;height:${r.height}px;top:${r.top}px;left:${r.left}px;`;
-      g.textContent=card.querySelector('.card-dayname').textContent;
+    handle.addEventListener('dragend', function() {
+      clearDragStyles();
+      dragSrcIdx = null;
+    });
+
+    // TOUCH: touchstart — passive (just records start position)
+    handle.addEventListener('touchstart', function(e) {
+      var t = e.touches[0];
+      dragSrcIdx = parseInt(handle.dataset.idx, 10);
+      var card = handle.closest('.day-card');
+      var r = card.getBoundingClientRect();
+      touchOffX = t.clientX - r.left;
+      touchOffY = t.clientY - r.top;
+      lastOverCard = null;
+      card.classList.add('dragging');
+
+      // Create ghost
+      var g = document.createElement('div');
+      g.className = 'touch-ghost';
+      g.style.width  = r.width  + 'px';
+      g.style.height = r.height + 'px';
+      g.style.top    = r.top    + 'px';
+      g.style.left   = r.left   + 'px';
+      g.textContent  = card.querySelector('.card-dayname').textContent;
       document.body.appendChild(g);
-      touchGhost=g;
-    },{passive:true});
+      touchGhost = g;
+    }, {passive: true});
 
-    // TOUCH move – NON-passive, preventDefault stops scroll
-    // Works because .drag-handle has touch-action:none in CSS
-    h.addEventListener('touchmove',e=>{
-      if(dragSrcIdx===null)return;
+    // TOUCH: touchmove — NON-passive so preventDefault stops page scroll.
+    // This only works because touch-action:none is set on .drag-handle in CSS.
+    handle.addEventListener('touchmove', function(e) {
+      if (dragSrcIdx === null) return;
       e.preventDefault();
-      const t=e.touches[0];
-      touchGhost.style.left=(t.clientX-touchOffX)+'px';
-      touchGhost.style.top=(t.clientY-touchOffY)+'px';
-      const over=cardAt(t.clientX,t.clientY);
-      if(over!==lastOver){
-        document.querySelectorAll('.day-card').forEach(c=>c.classList.remove('drag-over'));
-        if(over&&+over.dataset.idx!==dragSrcIdx) over.classList.add('drag-over');
-        lastOver=over;
+
+      var t = e.touches[0];
+      touchGhost.style.left = (t.clientX - touchOffX) + 'px';
+      touchGhost.style.top  = (t.clientY - touchOffY) + 'px';
+
+      var over = cardAtPoint(t.clientX, t.clientY);
+      if (over !== lastOverCard) {
+        document.querySelectorAll('.day-card').forEach(function(c) { c.classList.remove('drag-over'); });
+        if (over && parseInt(over.dataset.idx, 10) !== dragSrcIdx) {
+          over.classList.add('drag-over');
+        }
+        lastOverCard = over;
       }
-    },{passive:false});
+    }, {passive: false});
 
-    h.addEventListener('touchend',e=>{
-      if(dragSrcIdx===null)return;
-      if(touchGhost){touchGhost.remove();touchGhost=null;}
-      clearStyles();
-      const t=e.changedTouches[0];
-      const over=lastOver||cardAt(t.clientX,t.clientY);
-      if(over) doSwap(+over.dataset.idx); else dragSrcIdx=null;
-      lastOver=null;
-    },{passive:true});
+    // TOUCH: touchend
+    handle.addEventListener('touchend', function(e) {
+      if (dragSrcIdx === null) return;
+      if (touchGhost) { touchGhost.remove(); touchGhost = null; }
+      clearDragStyles();
+      var t = e.changedTouches[0];
+      var over = lastOverCard || cardAtPoint(t.clientX, t.clientY);
+      if (over) {
+        doSwap(parseInt(over.dataset.idx, 10));
+      } else {
+        dragSrcIdx = null;
+      }
+      lastOverCard = null;
+    }, {passive: true});
 
-    h.addEventListener('touchcancel',()=>{
-      if(touchGhost){touchGhost.remove();touchGhost=null;}
-      clearStyles(); dragSrcIdx=null; lastOver=null;
-    },{passive:true});
+    handle.addEventListener('touchcancel', function() {
+      if (touchGhost) { touchGhost.remove(); touchGhost = null; }
+      clearDragStyles();
+      dragSrcIdx = null;
+      lastOverCard = null;
+    }, {passive: true});
   });
 
-  // MOUSE DROP TARGETS
-  document.querySelectorAll('.day-card').forEach(card=>{
-    card.addEventListener('dragover',e=>{ e.preventDefault(); e.dataTransfer.dropEffect='move'; if(+card.dataset.idx!==dragSrcIdx) card.classList.add('drag-over'); });
-    card.addEventListener('dragleave',e=>{ if(!card.contains(e.relatedTarget)) card.classList.remove('drag-over'); });
-    card.addEventListener('drop',e=>{ e.preventDefault(); card.classList.remove('drag-over'); doSwap(+card.dataset.idx); });
-  });
-
-  // MEAL INPUT
-  document.querySelectorAll('.meal-input').forEach(el=>{
-    let timer;
-    el.addEventListener('input',()=>{
-      const idx=+el.dataset.idx; weekData[idx].meal=el.value;
-      clearTimeout(timer);
-      timer=setTimeout(()=>{
-        save(currentMonday,weekData);
-        if(FIREBASE_READY)syncFB();
-        const tick=document.getElementById(`tick-${idx}`);
-        if(tick){tick.classList.add('show');setTimeout(()=>tick.classList.remove('show'),2000);}
-      },600);
+  // ── Mouse drop targets ──
+  document.querySelectorAll('.day-card').forEach(function(card) {
+    card.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (parseInt(card.dataset.idx, 10) !== dragSrcIdx) {
+        card.classList.add('drag-over');
+      }
+    });
+    card.addEventListener('dragleave', function(e) {
+      if (!card.contains(e.relatedTarget)) card.classList.remove('drag-over');
+    });
+    card.addEventListener('drop', function(e) {
+      e.preventDefault();
+      card.classList.remove('drag-over');
+      doSwap(parseInt(card.dataset.idx, 10));
     });
   });
 
-  // IMAGE UPLOAD
-  document.querySelectorAll('.file-input').forEach(inp=>{
-    inp.addEventListener('change',e=>uploadImg(e,+inp.dataset.idx));
+  // ── Meal textarea auto-save ──
+  document.querySelectorAll('.meal-input').forEach(function(el) {
+    var timer;
+    el.addEventListener('input', function() {
+      var idx = parseInt(el.dataset.idx, 10);
+      weekData[idx].meal = el.value;
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        saveData(currentMonday, weekData);
+        var tick = document.getElementById('tick-' + idx);
+        if (tick) {
+          tick.classList.add('show');
+          setTimeout(function() { tick.classList.remove('show'); }, 2000);
+        }
+      }, 600);
+    });
   });
-  document.querySelectorAll('.upload-overlay,.change-photo-btn').forEach(el=>{
-    el.addEventListener('click',e=>{ e.stopPropagation(); el.closest('.card-img-wrap').querySelector('.file-input').click(); });
+
+  // ── Image upload ──
+  document.querySelectorAll('.file-input').forEach(function(inp) {
+    inp.addEventListener('change', function(e) { uploadImage(e, parseInt(inp.dataset.idx, 10)); });
+  });
+  document.querySelectorAll('.upload-overlay, .change-photo-btn').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.stopPropagation();
+      el.closest('.card-img-wrap').querySelector('.file-input').click();
+    });
   });
 }
 
-async function uploadImg(e,idx){
-  const file=e.target.files[0]; if(!file)return;
-  const wrap=document.querySelectorAll('.card-img-wrap')[idx];
-  const sp=document.createElement('div'); sp.className='spinner'; wrap.appendChild(sp);
-  const fd=new FormData();
-  fd.append('file',file); fd.append('upload_preset','madplan_unsigned'); fd.append('cloud_name','di5x780hh');
-  try{
-    const res=await fetch('https://api.cloudinary.com/v1_1/di5x780hh/image/upload',{method:'POST',body:fd});
-    const data=await res.json();
-    if(data.secure_url){ weekData[idx].image=data.secure_url; save(currentMonday,weekData); if(FIREBASE_READY)syncFB(); sp.remove(); renderGrid(); toast('Billede gemt ✓'); }
-    else{ sp.remove(); toast('Fejl ved upload'); }
-  }catch(err){ sp.remove(); toast('Fejl ved upload'); }
+// ── IMAGE UPLOAD (Cloudinary) ──
+function uploadImage(e, idx) {
+  var file = e.target.files[0];
+  if (!file) return;
+
+  var wrap = document.querySelectorAll('.card-img-wrap')[idx];
+  var sp = document.createElement('div');
+  sp.className = 'spinner';
+  wrap.appendChild(sp);
+
+  var fd = new FormData();
+  fd.append('file', file);
+  fd.append('upload_preset', 'madplan_unsigned');
+  fd.append('cloud_name', 'di5x780hh');
+
+  fetch('https://api.cloudinary.com/v1_1/di5x780hh/image/upload', {method: 'POST', body: fd})
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.secure_url) {
+        weekData[idx].image = data.secure_url;
+        saveData(currentMonday, weekData);
+        sp.remove();
+        renderGrid();
+        toast('Billede gemt \u2713');
+      } else {
+        sp.remove();
+        toast('Fejl ved upload \u2013 pr\u00f8v igen');
+      }
+    })
+    .catch(function() {
+      sp.remove();
+      toast('Fejl ved upload \u2013 pr\u00f8v igen');
+    });
 }
 
-// NAVIGATION
-document.getElementById('prevWeek').addEventListener('click',async()=>{
-  currentMonday.setDate(currentMonday.getDate()-7); weekData=load(currentMonday); render();
-  await loadFromFirebase(currentMonday); startListener(currentMonday);
+// ── WEEK NAVIGATION ──
+document.getElementById('prevWeek').addEventListener('click', function() {
+  currentMonday.setDate(currentMonday.getDate() - 7);
+  weekData = loadData(currentMonday);
+  render();
 });
-document.getElementById('nextWeek').addEventListener('click',async()=>{
-  currentMonday.setDate(currentMonday.getDate()+7); weekData=load(currentMonday); render();
-  await loadFromFirebase(currentMonday); startListener(currentMonday);
+document.getElementById('nextWeek').addEventListener('click', function() {
+  currentMonday.setDate(currentMonday.getDate() + 7);
+  weekData = loadData(currentMonday);
+  render();
 });
 
-// FIREBASE SYNC
-const docRef=m=>window._fs.doc(db,'uger',m.toISOString().slice(0,10));
-async function loadFromFirebase(m){
-  if(!FIREBASE_READY)return;
-  try{ const s=await window._fs.getDoc(docRef(m)); if(s.exists()){weekData=s.data().dage;renderGrid();} }catch(e){}
-}
-async function syncFB(){
-  if(!FIREBASE_READY)return;
-  try{await window._fs.setDoc(docRef(currentMonday),{dage:weekData});}catch(e){}
-}
-let unsub=null;
-function startListener(m){
-  if(!FIREBASE_READY)return;
-  if(unsub)unsub();
-  unsub=window._fs.onSnapshot(docRef(m),snap=>{
-    if(snap.exists()){
-      const nd=snap.data().dage;
-      if(JSON.stringify(nd)!==JSON.stringify(weekData)){weekData=nd;renderGrid();toast('Opdateret af familiemedlem 🔄');}
-    }
-  });
-}
-
+// ── START ──
 render();
-initFirebase();
 </script>
 
 </body>
