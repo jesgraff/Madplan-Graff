@@ -766,8 +766,8 @@ function generateAiImage(idx) {
     showToast('Skriv rettens navn f\u00f8rst');
     return;
   }
-  var btn = document.querySelector('.ai-btn[data-idx="' + idx + '"]');
-  if (btn) { btn.disabled = true; btn.classList.add('loading'); btn.textContent = 'Genererer...'; }
+  var btn = document.querySelector('.ai-img-btn[data-idx="' + idx + '"]');
+  if (btn) { btn.disabled = true; btn.classList.add('loading'); btn.innerHTML = '⏳'; }
 
   fetch('https://madplan-billede.jesgraff.workers.dev', {
     method: 'POST',
@@ -784,12 +784,12 @@ function generateAiImage(idx) {
       showToast('Billede genereret \u2713');
     } else {
       showToast('Fejl: ' + (data.error || 'Pr\u00f8v igen'));
-      if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024; Generer billede'; }
+      if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024;'; }
     }
   })
   .catch(function(err) {
     showToast('Fejl ved generering');
-    if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024; Generer billede'; }
+    if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024;'; }
   });
 }
 
