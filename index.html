@@ -763,7 +763,7 @@ document.getElementById('resetBtn').addEventListener('click', function() {
 function generateAiImage(idx) {
   var meal = weekData[idx].meal;
   if (!meal || meal.trim() === '') {
-    showToast('Skriv rettens navn f\u00f8rst');
+    toast('Skriv rettens navn f\u00f8rst');
     return;
   }
   var btn = document.querySelector('.ai-img-btn[data-idx="' + idx + '"]');
@@ -781,14 +781,14 @@ function generateAiImage(idx) {
       saveData(currentMonday, weekData);
       if (window._fbSync) window._fbSync();
       renderGrid();
-      showToast('Billede genereret \u2713');
+      toast('Billede genereret \u2713');
     } else {
-      showToast('Fejl: ' + (data.error || 'Pr\u00f8v igen'));
+      toast('Fejl: ' + (data.error || 'Pr\u00f8v igen'));
       if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024;'; }
     }
   })
   .catch(function(err) {
-    showToast('Fejl ved generering');
+    toast('Fejl ved generering');
     if (btn) { btn.disabled = false; btn.classList.remove('loading'); btn.innerHTML = '&#10024;'; }
   });
 }
@@ -862,7 +862,7 @@ render();
             if (JSON.stringify(ndFixed) !== JSON.stringify(weekData)) {
               weekData = ndFixed;
               renderGrid();
-              showToast('Opdateret af familiemedlem \uD83D\uDD04');
+              toast('Opdateret af familiemedlem \uD83D\uDD04');
             }
           }
         }, function(e) { console.warn('FB listener:', e); });
